@@ -1,14 +1,21 @@
 package proyecto;
 
+import proyecto.Restaurante.VentanaRestaurante;
 import java.util.ArrayList;
-import proyecto.Platillo.*;
-import proyecto.Pedido.*;
-import proyecto.Restaurante.*;
+import proyecto.Pedido.Factura;
+import proyecto.Platillo.Platillo;
+import proyecto.Pedido.Pedido;
+import proyecto.Pedido.VentanaFactura;
+import proyecto.Pedido.VentanaPedidos;
+import proyecto.Restaurante.VentanaMenu;
+
+import proyecto.Pedido.Mesa;
+import proyecto.Pedido.VentanaMesa;
 
 public class Proyecto {
 
     public static void main(String[] args) {
-        ArrayList<Pedido> pedidos = new ArrayList();
+        /*ArrayList<Pedido> pedidos = new ArrayList();
 
         Platillo platillo1 = new Platillo("Hamburguesa con Papas", 2400);
         Platillo platillo2 = new Platillo("Pollo 2 Piezas con Papas", 2600);
@@ -23,62 +30,21 @@ public class Proyecto {
         pedidos.add(pedido2);
         pedidos.add(pedido3);
         pedidos.add(pedido4);
-        pedidos.add(pedido5);
-//        
-        Factura factura = new Factura("Ramses Solano Arias", "Mesa", "Javier Cartin", 1, "29-10-2021", pedidos);
-        VentanaFactura vista = new VentanaFactura(factura, "Factura");
-        vista.init();
+        pedidos.add(pedido5);*/
 
-//        VentanaPedidos vista = new VentanaPedidos(pedidos, "Pedidos");
-//        vista.init();
-//        VentanaMenu vista = new VentanaMenu();
-//        vista.init();
-        /*Mesa mesa = new Mesa(0, "Juanito Mora");
-        Mesa mesa1 = new Mesa(0, "Juanito Mora");
-        Mesa mesa2 = new Mesa(0, "Juanito Mora");
-        Mesa mesa3 = new Mesa(0, "Juanito Mora");
-        Mesa mesa4 = new Mesa(1, "Juanito Mora");
-        Mesa mesa5 = new Mesa(1, "Juanito Mora");
-        Mesa mesa6 = new Mesa(1, "Juanito Mora");
-        Mesa mesa7 = new Mesa(1, "Juanito Mora");
-        Mesa mesa8 = new Mesa(1, "Juanito Mora");
-        Mesa mesa9 = new Mesa(1, "Juanito Mora");
-        Mesa mesa10 = new Mesa(1, "Juanito Mora");
-        Mesa mesa11 = new Mesa(1, "Juanito Mora");
-        Mesa mesa12 = new Mesa(1, "Juanito Mora");
-        Mesa mesa13 = new Mesa(1, "Juanito Mora");
-        Mesa mesa14 = new Mesa(1, "Juanito Mora");
-        Mesa mesa15 = new Mesa(1, "Juanito Mora");
-        Mesa mesa16 = new Mesa(1, "Juanito Mora");
-        Mesa mesa17 = new Mesa(1, "Juanito Mora");
-        Mesa mesa18 = new Mesa(1, "Juanito Mora");
-        Mesa mesa19 = new Mesa(1, "Juanito Mora");
-//
-////          VentanaMesa vista = new VentanaMesa(mesa, "Mesa");
-////          vista.iniciar();
-        ConjuntoMesas mesas = new ConjuntoMesas();
-        mesas.AgregarMesa(mesa);
-        mesas.AgregarMesa(mesa1);
-        mesas.AgregarMesa(mesa2);
-        mesas.AgregarMesa(mesa3);
-        mesas.AgregarMesa(mesa4);
-        mesas.AgregarMesa(mesa5);
-        mesas.AgregarMesa(mesa6);
-        mesas.AgregarMesa(mesa7);
-        mesas.AgregarMesa(mesa8);
-        mesas.AgregarMesa(mesa9);
-        mesas.AgregarMesa(mesa10);
-        mesas.AgregarMesa(mesa11);
-        mesas.AgregarMesa(mesa12);
-        mesas.AgregarMesa(mesa13);
-        mesas.AgregarMesa(mesa14);
-        mesas.AgregarMesa(mesa15);
-        mesas.AgregarMesa(mesa16);
-        mesas.AgregarMesa(mesa17);
-        mesas.AgregarMesa(mesa18);
-        mesas.AgregarMesa(mesa19);
-//
-        VentanaConjuntoMesas vista = new VentanaConjuntoMesas("Conjunto Mesas", mesas);
+ /*Factura factura = new Factura("Ramses Solano Arias", "Mesa", "Javier Cartin", 1, "29-10-2021", pedidos);
+        VentanaFactura vista = new VentanaFactura(factura, "Factura");
         vista.init();*/
+        // VentanaPedidos vista = new VentanaPedidos(pedidos, "Pedidos");
+        // vista.init();
+        /*VentanaMenu vista = new VentanaMenu();
+       vista.init();*/
+        Mesa mesa = new Mesa(0, "Pedro");
+        mesa.setDisponibilidad(false);
+        VentanaMesa vntMesa = new VentanaMesa(mesa, "Mesa");
+        vntMesa.iniciar();
+
+//        VentanaRestaurante ventanaRestaurante = new VentanaRestaurante();
+//        ventanaRestaurante.init();
     }
 }

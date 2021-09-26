@@ -1,5 +1,6 @@
 package proyecto.Pedido;
 
+import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -7,12 +8,14 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 
 public class VentanaMesa extends JFrame {
     
@@ -30,6 +33,7 @@ public class VentanaMesa extends JFrame {
     
     public void iniciar() {
         setSize(300, 300);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(true);
         ajustarComponentes(getContentPane());

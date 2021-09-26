@@ -7,7 +7,7 @@ public class Mesa {
     private ArrayList<Pedido> pedidos; //pedidos dentro de la mesa
     private int comensales; //cantidad de personas en la mesa
     private boolean disponible; //si la mesa está ocupada o no
-    private final String mesero;
+    private String mesero;
 
     public Mesa(int n, String m) {
         pedidos = new ArrayList();
