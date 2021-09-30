@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vista;
 
 import java.awt.BorderLayout;
@@ -25,11 +20,8 @@ import Vista.VentanaPedidos;
 import Clases.Platillo;
 import Clases.Cliente;
 import Clases.ConjuntoMesas;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author hilla
- */
 public class VentanaMenuLlevar extends JFrame {
 
     private ArrayList<Cliente> clientes;
@@ -55,7 +47,7 @@ public class VentanaMenuLlevar extends JFrame {
         JButton btn6 = new JButton();
         JButton btn7 = new JButton();
         JButton btn8 = new JButton();
-        JButton btn9 = new JButton("Añadir");
+        JButton btnAgregar = new JButton("Añadir");
         JButton regresar = new JButton("Regresar");
         JButton btn_aceptar = new JButton("Aceptar Pedido");
         JButton btn_ver_pedidos = new JButton("Ver Pedidos");
@@ -123,12 +115,29 @@ public class VentanaMenuLlevar extends JFrame {
             Platillo sandwich = new Platillo("Sandwich de Jamon y Queso", 1500);
             setPlatillo(sandwich);
         });
-        btn9.addActionListener((e) -> {
-            Pedido pedido = new Pedido(Integer.parseInt(txt1.getText()), platillo_seleccionado);
-            pedidos.add(pedido);
+
+        btnAgregar.addActionListener((e) -> {
+            int contador = 0;
+            for (int i = 0; i < txt1.getText().length(); i++) {
+                if (Character.isDigit(txt1.getText().charAt(i))) {
+                    contador++;
+                }
+            }
+            if (contador == txt1.getText().length()) {
+                if (platillo_seleccionado == null || txt1.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar un platillo y digitar una cantidad");
+                } else {
+                    Pedido pedido = new Pedido(Integer.parseInt(txt1.getText()), platillo_seleccionado);
+                    pedidos.add(pedido);
+                    JOptionPane.showMessageDialog(null, "Recuerde al final darle click en 'aceptar pedido'");
+                }
+            }
         });
 
         btn_ver_pedidos.addActionListener((e) -> {
+            if (platillo_seleccionado == null) {
+                JOptionPane.showMessageDialog(null, "Recuerde que debe darle click en 'aceptar pedido' para poder visualizarlo");
+            }
             for (int i = 0; i < clientes.size(); i++) {
                 if (clientes.get(i).getNombre().equals(nombre)) {
                     VentanaPedidoCliente vista = new VentanaPedidoCliente(clientes.get(i).getPedidos(), clientes);
@@ -136,7 +145,6 @@ public class VentanaMenuLlevar extends JFrame {
                     setVisible(false);
                 }
             }
-
         });
 
         btn_aceptar.addActionListener((e) -> {
@@ -159,7 +167,7 @@ public class VentanaMenuLlevar extends JFrame {
         panel.add(panel2, gbc);
         gbc.gridx = 0;
         gbc.gridy = 2;
-        panel.add(btn9, gbc);
+        panel.add(btnAgregar, gbc);
         gbc.gridx = 0;
         gbc.gridy = 3;
         panel.add(btn_ver_pedidos, gbc);
