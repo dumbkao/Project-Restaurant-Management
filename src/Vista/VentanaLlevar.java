@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import Clases.Cliente;
 import Clases.ConjuntoMesas;
+import java.awt.Insets;
 
 public class VentanaLlevar extends JFrame {
 
@@ -37,9 +38,12 @@ public class VentanaLlevar extends JFrame {
         btnAgregar.addActionListener((e) -> {
             String nombre = JOptionPane.showInputDialog("Ingrese el nombre");
             String telefono = JOptionPane.showInputDialog("Ingrese su telefono");
-            VentanaMenuLlevar menu = new VentanaMenuLlevar(clientes);
-            menu.init(nombre, telefono, mesas);
-            setVisible(false);
+
+            if (!nombre.equals("") && !telefono.equals("")) {
+                VentanaMenuLlevar menu = new VentanaMenuLlevar(clientes);
+                menu.init(nombre, telefono, mesas);
+                setVisible(false);
+            }
         });
 
         btnRegresar.addActionListener((e) -> {
@@ -48,9 +52,18 @@ public class VentanaLlevar extends JFrame {
             setVisible(false);
         });
 
-        mainPanel.add(btnVerPedidos);
-        mainPanel.add(btnAgregar);
-        mainPanel.add(btnRegresar);
+        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        mainPanel.add(btnVerPedidos, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        mainPanel.add(btnAgregar, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        mainPanel.add(btnRegresar, gbc);
 
         c.add(mainPanel);
 
