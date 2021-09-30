@@ -1,61 +1,81 @@
-package proyecto.Pedido;
+package Vista;
 
-import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTable;
+import Clases.Factura;
+import Clases.Mesa;
+import Clases.Pedido;
+import Clases.Cliente;
+import Clases.ConjuntoMesas;
+import Vista.VentanaConjuntoMesas;
 
 public class VentanaMesa extends JFrame {
-    
-    private ArrayList<Pedido> pedidos;
-    private Mesa mesa;
+
+    private final ArrayList<Cliente> clientes;
+    private final ArrayList<Pedido> pedidos;
+    private final Mesa mesa;
     private JButton btnVerPedidos;
     private JButton btnCambiarDispo;
     private JButton btnVerFactura;
-    
-    public VentanaMesa(Mesa mesa, String titulo) {
+    private JButton regresar;
+
+    public VentanaMesa(Mesa mesa, String titulo, ArrayList<Cliente> clientes) {
         super(titulo);
         this.mesa = mesa;
         pedidos = mesa.getPedidos();
+        this.clientes = clientes;
     }
-    
-    public void iniciar() {
-        setSize(300, 300);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+    public void init(ConjuntoMesas mesas) {
+        setSize(450, 300);
         setLocationRelativeTo(null);
-        setResizable(true);
-        ajustarComponentes(getContentPane());
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        ajustarComponentes(getContentPane(), mesas);
+        setResizable(false);
         setVisible(true);
     }
-    
-    public void ajustarComponentes(Container container) {
-        JPanel pnlPrincipal = new JPanel(new GridLayout(2, 0));
-        
+
+    public void ajustarComponentes(Container container, ConjuntoMesas mesas) {
+        JPanel pnlPrincipal = new JPanel(new GridBagLayout());
+        GridBagConstraints constraint = new GridBagConstraints();
+
         JPanel pnl1 = new JPanel(new FlowLayout());
         JPanel pnl2 = new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
-        
+
         JLabel comensales = new JLabel("Cantidad de personas: " + mesa.getComensales());
         JLabel disponible = new JLabel("La mesa está");
         JLabel ocupada = new JLabel("");
         JLabel btnMesa = new JLabel();
-        
+
         btnVerPedidos = new JButton("Ver pedidos");
-        btnCambiarDispo = new JButton("Cambiar disponibilidad");
+        btnCambiarDispo = new JButton("Pagar");
         btnVerFactura = new JButton("Ver factura");
-        
+        regresar = new JButton("Regresar");
+
+        btnVerPedidos.addActionListener((e) -> {
+            VentanaPedidos vista = new VentanaPedidos(pedidos, mesa.getNumero(), clientes);
+            vista.init(mesas, "Mesa");
+            setVisible(false);
+        });
+
+        btnVerFactura.addActionListener((e) -> {
+            Factura factura = new Factura("Mesa", "Local", "Pepito", (mesa.getNumero() + 1), "29/09/2021", pedidos);
+            VentanaFactura vista = new VentanaFactura(factura, mesa.getNumero(), clientes);
+            vista.init(mesas, "Mesa");
+            setVisible(false);
+        });
+
         btnCambiarDispo.addActionListener((ActionEvent e) -> {
             if (mesa.isDisponible() == true) {
                 mesa.setDisponibilidad(false);
@@ -86,11 +106,17 @@ public class VentanaMesa extends JFrame {
             }
             btnCambiarDispo.updateUI();
         });
-        
+
+        regresar.addActionListener((e) -> {
+            VentanaConjuntoMesas vista = new VentanaConjuntoMesas(mesas, clientes);
+            vista.init();
+            setVisible(false);
+        });
+
         pnl1.add(btnMesa);
         pnl1.add(disponible);
         pnl1.add(ocupada);
-        
+
         if (mesa.isDisponible() == true) {
             ocupada.setText("disponible");
             ImageIcon icnMesa = new ImageIcon("src/images/mesa d.png");
@@ -106,14 +132,21 @@ public class VentanaMesa extends JFrame {
             pnl2.add(btnVerPedidos, c);
             c.gridx = 0;
             c.gridy = 1;
-            pnl2.add(btnCambiarDispo, c);
+            pnl2.add(btnVerFactura, c);
             c.gridx = 0;
             c.gridy = 2;
-            pnl2.add(btnVerFactura, c);
+            pnl2.add(btnCambiarDispo, c);
         }
-        
-        pnlPrincipal.add(pnl1);
-        pnlPrincipal.add(pnl2);
+        constraint.insets = new Insets(10, 10, 10, 10);
+        constraint.gridx = 0;
+        constraint.gridy = 0;
+        pnlPrincipal.add(pnl1, constraint);
+        constraint.gridx = 0;
+        constraint.gridy = 1;
+        pnlPrincipal.add(pnl2, constraint);
+        constraint.gridx = 0;
+        constraint.gridy = 2;
+        pnlPrincipal.add(regresar, constraint);
         container.add(pnlPrincipal);
     }
 }

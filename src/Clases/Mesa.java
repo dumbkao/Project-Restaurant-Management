@@ -1,4 +1,4 @@
-package proyecto.Pedido;
+package Clases;
 
 import java.util.ArrayList;
 
@@ -7,13 +7,27 @@ public class Mesa {
     private ArrayList<Pedido> pedidos; //pedidos dentro de la mesa
     private int comensales; //cantidad de personas en la mesa
     private boolean disponible; //si la mesa está ocupada o no
-    private String mesero;
+    private int numero;
 
-    public Mesa(int n, String m) {
+    public String getMesero() {
+        return mesero;
+    }
+    private final String mesero;
+
+    public Mesa() {
         pedidos = new ArrayList();
-        comensales = n;
+        comensales = 0;
         disponible = true;
-        mesero = m;
+        mesero = "";
+        numero = 0;
+    }
+    
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public int getNumero() {
+        return numero;
     }
 
     public void InsertarPedido(Pedido p) {
@@ -38,5 +52,9 @@ public class Mesa {
 
     public void setDisponibilidad(boolean n) {
         this.disponible = n;
+    }
+    
+    public void setPedidos(ArrayList<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 }

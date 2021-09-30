@@ -1,7 +1,7 @@
 
-package proyecto.Restaurante;
+package Clases;
 
-import proyecto.Pedido.Mesa;
+import Clases.Mesa;
 import java.util.ArrayList;
 
 public class ConjuntoMesas {

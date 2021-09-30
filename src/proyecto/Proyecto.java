@@ -1,50 +1,58 @@
 package proyecto;
 
-import proyecto.Restaurante.VentanaRestaurante;
+import Clases.ConjuntoMesas;
+import Clases.Cliente;
+import Clases.Mesa;
+import Vista.VentanaRestaurante;
 import java.util.ArrayList;
-import proyecto.Pedido.Factura;
-import proyecto.Platillo.Platillo;
-import proyecto.Pedido.Pedido;
-import proyecto.Pedido.VentanaFactura;
-import proyecto.Pedido.VentanaPedidos;
-import proyecto.Restaurante.VentanaMenu;
-
-import proyecto.Pedido.Mesa;
-import proyecto.Pedido.VentanaMesa;
 
 public class Proyecto {
 
     public static void main(String[] args) {
-        /*ArrayList<Pedido> pedidos = new ArrayList();
+        Mesa mesa = new Mesa();
+        Mesa mesa1 = new Mesa();
+        Mesa mesa2 = new Mesa();
+        Mesa mesa3 = new Mesa();
+        Mesa mesa4 = new Mesa();
+        Mesa mesa5 = new Mesa();
+        Mesa mesa6 = new Mesa();
+        Mesa mesa7 = new Mesa();
+        Mesa mesa8 = new Mesa();
+        Mesa mesa9 = new Mesa();
+        Mesa mesa10 = new Mesa();
+        Mesa mesa11 = new Mesa();
+        Mesa mesa12 = new Mesa();
+        Mesa mesa13 = new Mesa();
+        Mesa mesa14 = new Mesa();
+        Mesa mesa15 = new Mesa();
+        Mesa mesa16 = new Mesa();
+        Mesa mesa17 = new Mesa();
+        Mesa mesa18 = new Mesa();
+        Mesa mesa19 = new Mesa();
+        ConjuntoMesas mesas = new ConjuntoMesas();
+        mesas.AgregarMesa(mesa);
+        mesas.AgregarMesa(mesa1);
+        mesas.AgregarMesa(mesa2);
+        mesas.AgregarMesa(mesa3);
+        mesas.AgregarMesa(mesa4);
+        mesas.AgregarMesa(mesa5);
+        mesas.AgregarMesa(mesa6);
+        mesas.AgregarMesa(mesa7);
+        mesas.AgregarMesa(mesa8);
+        mesas.AgregarMesa(mesa9);
+        mesas.AgregarMesa(mesa10);
+        mesas.AgregarMesa(mesa11);
+        mesas.AgregarMesa(mesa12);
+        mesas.AgregarMesa(mesa13);
+        mesas.AgregarMesa(mesa14);
+        mesas.AgregarMesa(mesa15);
+        mesas.AgregarMesa(mesa16);
+        mesas.AgregarMesa(mesa17);
+        mesas.AgregarMesa(mesa18);
+        mesas.AgregarMesa(mesa19);
 
-        Platillo platillo1 = new Platillo("Hamburguesa con Papas", 2400);
-        Platillo platillo2 = new Platillo("Pollo 2 Piezas con Papas", 2600);
-        Platillo platillo3 = new Platillo("Taco al Pastor", 500);
-
-        Pedido pedido1 = new Pedido("Mesa", 3, platillo1);
-        Pedido pedido2 = new Pedido("Llevar", 2, platillo2);
-        Pedido pedido3 = new Pedido("Mesa", 7, platillo3);
-        Pedido pedido4 = new Pedido("Express", 1, platillo1);
-        Pedido pedido5 = new Pedido("Mesa", 4, platillo3);
-        pedidos.add(pedido1);
-        pedidos.add(pedido2);
-        pedidos.add(pedido3);
-        pedidos.add(pedido4);
-        pedidos.add(pedido5);*/
-
- /*Factura factura = new Factura("Ramses Solano Arias", "Mesa", "Javier Cartin", 1, "29-10-2021", pedidos);
-        VentanaFactura vista = new VentanaFactura(factura, "Factura");
-        vista.init();*/
-        // VentanaPedidos vista = new VentanaPedidos(pedidos, "Pedidos");
-        // vista.init();
-        /*VentanaMenu vista = new VentanaMenu();
-       vista.init();*/
-        Mesa mesa = new Mesa(0, "Pedro");
-        mesa.setDisponibilidad(false);
-        VentanaMesa vntMesa = new VentanaMesa(mesa, "Mesa");
-        vntMesa.iniciar();
-
-//        VentanaRestaurante ventanaRestaurante = new VentanaRestaurante();
-//        ventanaRestaurante.init();
+        ArrayList<Cliente> clientes = new ArrayList();
+        VentanaRestaurante vista = new VentanaRestaurante(clientes);
+        vista.init(mesas);
     }
 }

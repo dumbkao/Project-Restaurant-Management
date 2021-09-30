@@ -1,5 +1,5 @@
 
-package proyecto.Pedido;
+package Clases;
 
 import java.util.ArrayList;
 
@@ -41,7 +41,7 @@ public class Factura {
     public int Total() {
         int total = 0;
         for (int i = 0; i < pedidos.size(); i++) {
-            total = total + (pedidos.get(i).getCantidad() + pedidos.get(i).getDetalle().getPrecio());
+            total = total + (pedidos.get(i).getCantidad() * pedidos.get(i).getDetalle().getPrecio());
         }
         return total;
     }
