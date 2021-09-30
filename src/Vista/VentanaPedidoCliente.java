@@ -62,7 +62,6 @@ public class VentanaPedidoCliente extends JFrame {
         panel_boton.add(regresar);
 
         regresar.addActionListener((e) -> {
-
             VentanaMenuLlevar vista = new VentanaMenuLlevar(clientes);
             vista.setPedidos(pedidos);
             vista.init(nombre, telefono, mesas);

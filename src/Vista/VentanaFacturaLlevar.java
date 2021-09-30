@@ -5,6 +5,8 @@
  */
 package Vista;
 
+import Clases.Cliente;
+import Clases.ConjuntoMesas;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.FlowLayout;
@@ -32,16 +34,17 @@ import Vista.VentanaMesa;
  */
 public class VentanaFacturaLlevar extends JFrame {
 
+    private ArrayList<Cliente> clientes;
     private ArrayList<Pedido> pedidos;
     private final Factura factura;
 
-    public VentanaFacturaLlevar(Factura factura) {
+    public VentanaFacturaLlevar(Factura factura, ArrayList<Cliente> clientes) {
         super("Factura para llevar ");
         this.factura = factura;
-
+        this.clientes = clientes;
     }
 
-    public void ajustarComponentes(Container container) {
+    public void ajustarComponentes(Container container, ConjuntoMesas mesas) {
         String espacios = "         ";
         JPanel panel_principal = new JPanel(new GridBagLayout());
         GridBagConstraints constraint = new GridBagConstraints();
@@ -98,7 +101,9 @@ public class VentanaFacturaLlevar extends JFrame {
         imagen.setIcon(imagen_icono);
 
         regresar.addActionListener((e) -> {
-
+            VentanaPedidosLlevar vista = new VentanaPedidosLlevar(clientes);
+            vista.init(mesas);
+            setVisible(false);
         });
 
         subpanel1A.add(nombre);
@@ -141,12 +146,12 @@ public class VentanaFacturaLlevar extends JFrame {
         container.add(panel_principal, BorderLayout.NORTH);
     }
 
-    public void init() {
+    public void init(ConjuntoMesas mesas) {
         setSize(570, 640);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
-        ajustarComponentes(getContentPane());
+        ajustarComponentes(getContentPane(), mesas);
         setVisible(true);
     }
 }

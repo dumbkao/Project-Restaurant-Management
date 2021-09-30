@@ -19,6 +19,7 @@ import Clases.Pedido;
 import Vista.VentanaFactura;
 import Clases.Cliente;
 import Clases.ConjuntoMesas;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -58,11 +59,15 @@ public class VentanaPedidosLlevar extends JFrame {
         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         mostrarCliente = new JButton("Mostrar cliente");
         mostrarCliente.addActionListener((e) -> {
-            int fila = tabla.getSelectedRow();
-            Factura factura = new Factura("Juan", "Llevar", "Ventanilla", fila, "29/09/2021", clientes.get(fila).getPedidos());
-            VentanaFacturaLlevar vista = new VentanaFacturaLlevar(factura);
-            vista.init();
-            setVisible(false);
+            if (tabla.getRowCount() != 0) {
+                int fila = tabla.getSelectedRow();
+                Factura factura = new Factura("Juan", "Llevar", "Ventanilla", fila, "29/09/2021", clientes.get(fila).getPedidos());
+                VentanaFacturaLlevar vista = new VentanaFacturaLlevar(factura, clientes);
+                vista.init(mesas);
+                setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(null, "NO HAY CLIENTES");
+            }
         });
         gbc.gridx = 0;
         gbc.gridy = 0;
