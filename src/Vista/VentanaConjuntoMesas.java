@@ -71,18 +71,29 @@ public class VentanaConjuntoMesas extends JFrame {
     public void AgregarEventos() {
         botones.get(0).addActionListener((ActionEvent e) -> {
             if (mesas.getMesas().get(0).isDisponible() == true) {
-                int cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite la cantidad de personas"));
-                mesas.getMesas().get(0).setComensales(cantidad);
-                VentanaMenu vista = new VentanaMenu(clientes);
-                vista.setMesa(0);
-                vista.init(mesas);
-                mesas.getMesas().get(0).setDisponibilidad(false);
+                String cantidad = JOptionPane.showInputDialog(null, "Digite la cantidad de personas");
+                int cant = 0;
+                int contador = 0;
+                for (int i = 0; i < cantidad.length(); i++) {
+                    if (Character.isDigit(cantidad.charAt(i))) {
+                        contador++;
+                    }
+                }
+                if (contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0)) {
+                    cant = Integer.parseInt(cantidad);
+                    mesas.getMesas().get(0).setComensales(cant);
+                    VentanaMenu vista = new VentanaMenu(clientes);
+                    vista.setMesa(0);
+                    vista.init(mesas);
+                    mesas.getMesas().get(0).setDisponibilidad(false);
+                    setVisible(false);
+                }
             } else {
                 mesas.getMesas().get(0).setNumero(0);
                 VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(0), "Mesa 1", clientes);
                 vista.init(mesas);
+                setVisible(false);
             }
-            setVisible(false);
         });
         botones.get(1).addActionListener((ActionEvent e) -> {
             if (mesas.getMesas().get(1).isDisponible() == true) {

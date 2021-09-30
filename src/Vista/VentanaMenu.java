@@ -18,6 +18,7 @@ import Clases.Pedido;
 import Clases.Platillo;
 import Clases.Cliente;
 import Clases.ConjuntoMesas;
+import javax.swing.JOptionPane;
 
 public class VentanaMenu extends JFrame {
 
@@ -33,7 +34,17 @@ public class VentanaMenu extends JFrame {
         this.clientes = clientes;
     }
 
+    public void init(ConjuntoMesas mesas) {
+        setSize(450, 500);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        AjustarComponentes(getContentPane(), mesas);
+        setResizable(false);
+        setVisible(true);
+    }
+
     public void AjustarComponentes(Container container, ConjuntoMesas mesas) {
+
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         JPanel panel1 = new JPanel(new GridLayout(2, 4));
@@ -46,7 +57,7 @@ public class VentanaMenu extends JFrame {
         JButton btn6 = new JButton();
         JButton btn7 = new JButton();
         JButton btn8 = new JButton();
-        JButton btn9 = new JButton("Añadir");
+        JButton btnAgregar = new JButton("Añadir");
         JButton regresar = new JButton("Regresar");
         JButton btn_aceptar = new JButton("Aceptar Pedido");
         JButton btn_ver_pedidos = new JButton("Ver Pedidos");
@@ -118,9 +129,14 @@ public class VentanaMenu extends JFrame {
             Platillo sandwich = new Platillo("Sandwich de Jamon y Queso", 1500);
             setPlatillo(sandwich);
         });
-        btn9.addActionListener((e) -> {
-            Pedido pedido = new Pedido(Integer.parseInt(txt1.getText()), platillo_seleccionado);
-            pedidos.add(pedido);
+        btnAgregar.addActionListener((e) -> {
+            if (this.platillo_seleccionado == null || txt1.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Debe seleccionar un platillo y digitar una cantidad");
+            } else {
+                Pedido pedido = new Pedido(Integer.parseInt(txt1.getText()), platillo_seleccionado);
+                pedidos.add(pedido);
+                JOptionPane.showMessageDialog(null, "Recuerde que al final debe darle click en 'aceptar pedido' ");
+            }
         });
 
         btn_ver_pedidos.addActionListener((e) -> {
@@ -148,7 +164,7 @@ public class VentanaMenu extends JFrame {
         panel.add(panel2, gbc);
         gbc.gridx = 0;
         gbc.gridy = 2;
-        panel.add(btn9, gbc);
+        panel.add(btnAgregar, gbc);
         gbc.gridx = 0;
         gbc.gridy = 3;
         panel.add(btn_ver_pedidos, gbc);
@@ -160,15 +176,6 @@ public class VentanaMenu extends JFrame {
         panel.add(regresar, gbc);
 
         container.add(panel, BorderLayout.NORTH);
-    }
-
-    public void init(ConjuntoMesas mesas) {
-        setSize(450, 450);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        AjustarComponentes(getContentPane(), mesas);
-        setResizable(false);
-        setVisible(true);
     }
 
     public void setMesa(int numero_mesa) {

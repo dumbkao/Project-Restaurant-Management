@@ -140,7 +140,7 @@ public class VentanaFactura extends JFrame {
     }
 
     public void init(ConjuntoMesas mesas, String ventana) {
-        setSize(570, 640);
+        setSize(570, 680);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);

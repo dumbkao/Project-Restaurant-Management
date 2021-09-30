@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import Clases.Cliente;
 import Clases.ConjuntoMesas;
+import java.awt.Insets;
 
 public class VentanaTipoPedido extends JFrame {
 
@@ -56,6 +57,7 @@ public class VentanaTipoPedido extends JFrame {
             setVisible(false);
         });
 
+        constraint.insets = new Insets(10, 10, 10, 10);
         constraint.gridx = 0;
         constraint.gridy = 0;
         panel_principal.add(local, constraint);
