@@ -16,10 +16,12 @@ public class VentanaLlevar extends JFrame {
 
     private JButton btnVerPedidos, btnAgregar, btnRegresar;
     private ArrayList<Cliente> clientes;
+    private ArrayList<Cliente> clientesExpress;
 
-    public VentanaLlevar(ArrayList<Cliente> clientes) {
+    public VentanaLlevar(ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress) {
         super("Pedidos LLEVAR");
         this.clientes = clientes;
+        this.clientesExpress = clientesExpress;
     }
 
     public void ajustarComponentes(Container c, ConjuntoMesas mesas) {
@@ -30,7 +32,7 @@ public class VentanaLlevar extends JFrame {
         btnRegresar = new JButton("Regresar");
 
         btnVerPedidos.addActionListener((e) -> {
-            VentanaPedidosLlevar vista = new VentanaPedidosLlevar(clientes);
+            VentanaPedidosLlevar vista = new VentanaPedidosLlevar(clientes, clientesExpress);
             vista.init(mesas);
             setVisible(false);
         });
@@ -40,14 +42,14 @@ public class VentanaLlevar extends JFrame {
             String telefono = JOptionPane.showInputDialog("Ingrese su telefono");
 
             if (!nombre.equals("") && !telefono.equals("")) {
-                VentanaMenuLlevar menu = new VentanaMenuLlevar(clientes);
+                VentanaMenuLlevar menu = new VentanaMenuLlevar(clientes, clientesExpress);
                 menu.init(nombre, telefono, mesas);
                 setVisible(false);
             }
         });
 
         btnRegresar.addActionListener((e) -> {
-            VentanaTipoPedido vista = new VentanaTipoPedido(clientes);
+            VentanaTipoPedido vista = new VentanaTipoPedido(clientes, clientesExpress);
             vista.init(mesas);
             setVisible(false);
         });

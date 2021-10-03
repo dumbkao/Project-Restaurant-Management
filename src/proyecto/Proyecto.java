@@ -52,7 +52,8 @@ public class Proyecto {
         mesas.AgregarMesa(mesa19);
 
         ArrayList<Cliente> clientes = new ArrayList();
-        VentanaRestaurante vista = new VentanaRestaurante(clientes);
+        ArrayList<Cliente> clientesExpress = new ArrayList();
+        VentanaRestaurante vista = new VentanaRestaurante(clientes, clientesExpress);
         vista.init(mesas);
     }
 }

@@ -25,13 +25,15 @@ import javax.swing.JOptionPane;
 public class VentanaMenuLlevar extends JFrame {
 
     private ArrayList<Cliente> clientes;
+    private ArrayList<Cliente> clientesExpress;
     private ArrayList<Pedido> pedidos;
     private Platillo platillo_seleccionado;
 
-    public VentanaMenuLlevar(ArrayList<Cliente> clientes) {
+    public VentanaMenuLlevar(ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress) {
         super("Menu de llevar");
         this.clientes = clientes;
         pedidos = new ArrayList();
+        this.clientesExpress = clientesExpress;
     }
 
     public void AjustarComponentes(Container container, String nombre, String telefono, ConjuntoMesas mesas) {
@@ -140,7 +142,7 @@ public class VentanaMenuLlevar extends JFrame {
             }
             for (int i = 0; i < clientes.size(); i++) {
                 if (clientes.get(i).getNombre().equals(nombre)) {
-                    VentanaPedidoCliente vista = new VentanaPedidoCliente(clientes.get(i).getPedidos(), clientes);
+                    VentanaPedidoCliente vista = new VentanaPedidoCliente(clientes.get(i).getPedidos(), clientes, clientesExpress);
                     vista.init(nombre, telefono, "llevar", mesas);
                     setVisible(false);
                 }
@@ -153,7 +155,7 @@ public class VentanaMenuLlevar extends JFrame {
         });
 
         regresar.addActionListener((e) -> {
-            VentanaLlevar ventana = new VentanaLlevar(clientes);
+            VentanaLlevar ventana = new VentanaLlevar(clientes, clientesExpress);
             ventana.init(mesas);
             setVisible(false);
         });

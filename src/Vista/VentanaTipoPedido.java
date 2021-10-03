@@ -18,14 +18,16 @@ public class VentanaTipoPedido extends JFrame {
     private final JButton express;
     private final JButton regresar;
     private ArrayList<Cliente> clientes;
+    private ArrayList<Cliente> clientesExpress;
 
-    public VentanaTipoPedido(ArrayList<Cliente> clientes) {
+    public VentanaTipoPedido(ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress) {
         super("Tipo de Pedido");
         local = new JButton("Local");
         llevar = new JButton("Llevar");
         express = new JButton("Express");
         regresar = new JButton("Regresar");
         this.clientes = clientes;
+        this.clientesExpress = clientesExpress;
     }
 
     public void init(ConjuntoMesas mesas) {
@@ -41,18 +43,23 @@ public class VentanaTipoPedido extends JFrame {
         GridBagConstraints constraint = new GridBagConstraints();
 
         local.addActionListener((e) -> {
-            VentanaConjuntoMesas vista = new VentanaConjuntoMesas(mesas, clientes);
+            VentanaConjuntoMesas vista = new VentanaConjuntoMesas(mesas, clientes, clientesExpress);
             vista.init();
             setVisible(false);
 
         });
         llevar.addActionListener((e) -> {
-            VentanaLlevar ventana = new VentanaLlevar(clientes);
+            VentanaLlevar ventana = new VentanaLlevar(clientes, clientesExpress);
             ventana.init(mesas);
             setVisible(false);
         });
+        express.addActionListener((e) -> {
+            VentanaExpress ventana = new VentanaExpress(clientes, clientesExpress);
+            ventana.iniciar(mesas);
+            setVisible(false);
+        });
         regresar.addActionListener((e) -> {
-            VentanaRestaurante vista = new VentanaRestaurante(clientes);
+            VentanaRestaurante vista = new VentanaRestaurante(clientes, clientesExpress);
             vista.init(mesas);
             setVisible(false);
         });

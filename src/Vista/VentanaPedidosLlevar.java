@@ -19,6 +19,8 @@ import Clases.Pedido;
 import Vista.VentanaFactura;
 import Clases.Cliente;
 import Clases.ConjuntoMesas;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,28 +30,29 @@ import javax.swing.JOptionPane;
 public class VentanaPedidosLlevar extends JFrame {
 
     private ArrayList<Cliente> clientes;
+    private ArrayList<Cliente> clientesExpress;
     private JButton regresar, mostrarCliente;
 
-    public VentanaPedidosLlevar(ArrayList<Cliente> clientes) {
+    public VentanaPedidosLlevar(ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress) {
         super("Pedidos para llevar");
         this.clientes = clientes;
-
+        this.clientesExpress = clientesExpress;
     }
 
     public void ajustarComponentes(Container c, ConjuntoMesas mesas) {
         JPanel mainPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
+
         String columnas[] = {"Nombre", "Telefono"};
         String datos[][] = new String[clientes.size()][columnas.length];
         for (int i = 0; i < clientes.size(); i++) {
             String detalle[] = {clientes.get(i).getNombre(), clientes.get(i).getNumero()};
             datos[i] = detalle;
-
         }
 
         regresar = new JButton("Regresar");
         regresar.addActionListener((e) -> {
-            VentanaLlevar ventana = new VentanaLlevar(clientes);
+            VentanaLlevar ventana = new VentanaLlevar(clientes, clientesExpress);
             ventana.init(mesas);
             setVisible(false);
         });
@@ -60,9 +63,10 @@ public class VentanaPedidosLlevar extends JFrame {
         mostrarCliente = new JButton("Mostrar cliente");
         mostrarCliente.addActionListener((e) -> {
             if (tabla.getRowCount() != 0) {
+                String fecha = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
                 int fila = tabla.getSelectedRow();
-                Factura factura = new Factura("Juan", "Llevar", "Ventanilla", fila, "29/09/2021", clientes.get(fila).getPedidos());
-                VentanaFacturaLlevar vista = new VentanaFacturaLlevar(factura, clientes);
+                Factura factura = new Factura("Juan", "Llevar", "Ventanilla", fila, fecha, clientes.get(fila).getPedidos());
+                VentanaFacturaLlevar vista = new VentanaFacturaLlevar(factura, clientes, clientesExpress);
                 vista.init(mesas);
                 setVisible(false);
             } else {

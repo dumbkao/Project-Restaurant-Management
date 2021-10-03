@@ -22,6 +22,7 @@ import Vista.VentanaConjuntoMesas;
 public class VentanaMesa extends JFrame {
 
     private final ArrayList<Cliente> clientes;
+    private final ArrayList<Cliente> clientesExpress;
     private final ArrayList<Pedido> pedidos;
     private final Mesa mesa;
     private JButton btnVerPedidos;
@@ -29,11 +30,12 @@ public class VentanaMesa extends JFrame {
     private JButton btnVerFactura;
     private JButton regresar;
 
-    public VentanaMesa(Mesa mesa, String titulo, ArrayList<Cliente> clientes) {
+    public VentanaMesa(Mesa mesa, String titulo, ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress) {
         super(titulo);
         this.mesa = mesa;
         pedidos = mesa.getPedidos();
         this.clientes = clientes;
+        this.clientesExpress = clientesExpress;
     }
 
     public void init(ConjuntoMesas mesas) {
@@ -64,14 +66,14 @@ public class VentanaMesa extends JFrame {
         regresar = new JButton("Regresar");
 
         btnVerPedidos.addActionListener((e) -> {
-            VentanaPedidos vista = new VentanaPedidos(pedidos, mesa.getNumero(), clientes);
+            VentanaPedidos vista = new VentanaPedidos(pedidos, mesa.getNumero(), clientes, clientesExpress);
             vista.init(mesas, "Mesa");
             setVisible(false);
         });
 
         btnVerFactura.addActionListener((e) -> {
             Factura factura = new Factura("Mesa", "Local", "Pepito", (mesa.getNumero() + 1), "29/09/2021", pedidos);
-            VentanaFactura vista = new VentanaFactura(factura, mesa.getNumero(), clientes);
+            VentanaFactura vista = new VentanaFactura(factura, mesa.getNumero(), clientes, clientesExpress);
             vista.init(mesas, "Mesa");
             setVisible(false);
         });
@@ -108,7 +110,7 @@ public class VentanaMesa extends JFrame {
         });
 
         regresar.addActionListener((e) -> {
-            VentanaConjuntoMesas vista = new VentanaConjuntoMesas(mesas, clientes);
+            VentanaConjuntoMesas vista = new VentanaConjuntoMesas(mesas, clientes, clientesExpress);
             vista.init();
             setVisible(false);
         });

@@ -1,45 +1,51 @@
 package Vista;
 
+import Clases.Cliente;
+import Clases.ConjuntoMesas;
+import Clases.Pedido;
 import java.awt.BorderLayout;
-import javax.swing.JFrame;
-import java.util.ArrayList;
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import javax.swing.JPanel;
+import java.util.ArrayList;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import Clases.Pedido;
-import Clases.Cliente;
-import Clases.ConjuntoMesas;
-import Vista.VentanaMenu;
-import Vista.VentanaMenuLlevar;
 
-public class VentanaPedidoCliente extends JFrame {
+public class VentanaPedidoExpress extends JFrame {
 
     private final ArrayList<Cliente> clientes;
     private final ArrayList<Cliente> clientesExpress;
     private final ArrayList<Pedido> pedidos;
-
     private final JButton regresar;
 
-    public VentanaPedidoCliente(ArrayList<Pedido> pedidos, ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress) {
-        super("Pedidos cliente ");
+    public VentanaPedidoExpress(ArrayList<Pedido> pedidos, ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress) {
+        super("Pedidos Express");
         this.pedidos = pedidos;
         this.clientes = clientes;
         this.clientesExpress = clientesExpress;
         regresar = new JButton("Regresar");
     }
 
+    public void iniciar(String nombre, String telefono, String ventana, ConjuntoMesas mesas) {
+        setSize(600, 500);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        ajustarComponentes(getContentPane(), nombre, telefono, ventana, mesas);
+        setResizable(false);
+        setVisible(true);
+    }
+
     public void ajustarComponentes(Container container, String nombre, String telefono, String ventana, ConjuntoMesas mesas) {
-        JPanel panel_principal = new JPanel(new GridBagLayout());
-        GridBagConstraints constraint = new GridBagConstraints();
+        JPanel panelPrincipal = new JPanel(new GridBagLayout());
+        GridBagConstraints gbcPrincipal = new GridBagConstraints();
 
         JPanel panel_tabla = new JPanel(new GridBagLayout());
-        GridBagConstraints constraint2 = new GridBagConstraints();
+        GridBagConstraints gbcTabla = new GridBagConstraints();
 
         JPanel panel_boton = new JPanel(new FlowLayout());
 
@@ -55,37 +61,30 @@ public class VentanaPedidoCliente extends JFrame {
         JScrollPane scroll = new JScrollPane(tabla);
         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
-        constraint2.gridx = 0;
-        constraint2.gridy = 0;
-        panel_tabla.add(tabla.getTableHeader(), constraint2);
-        constraint2.gridx = 0;
-        constraint2.gridy = 1;
-        panel_tabla.add(scroll, constraint2);
+        gbcTabla.gridx = 0;
+        gbcTabla.gridy = 0;
+        panel_tabla.add(tabla.getTableHeader(), gbcTabla);
+        gbcTabla.gridx = 0;
+        gbcTabla.gridy = 1;
+        panel_tabla.add(scroll, gbcTabla);
+
         panel_boton.add(regresar);
 
         regresar.addActionListener((e) -> {
-            VentanaMenuLlevar vista = new VentanaMenuLlevar(clientes, clientesExpress);
+            VentanaMenuExpress vista = new VentanaMenuExpress(clientes, clientesExpress);
             vista.setPedidos(pedidos);
-            vista.init(nombre, telefono, mesas);
-
+            vista.iniciar(nombre, telefono, telefono, mesas);
             setVisible(false);
         });
 
-        constraint.gridx = 0;
-        constraint.gridy = 0;
-        panel_principal.add(panel_tabla, constraint);
-        constraint.gridx = 0;
-        constraint.gridy = 2;
-        panel_principal.add(panel_boton, constraint);
-        container.add(panel_principal, BorderLayout.NORTH);
-    }
+        gbcPrincipal.gridx = 0;
+        gbcPrincipal.gridy = 0;
+        panelPrincipal.add(panel_tabla, gbcPrincipal);
 
-    public void init(String nombre, String telefono, String ventana, ConjuntoMesas mesas) {
-        setSize(600, 500);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        ajustarComponentes(getContentPane(), nombre, telefono, ventana, mesas);
-        setResizable(false);
-        setVisible(true);
+        gbcPrincipal.gridx = 0;
+        gbcPrincipal.gridy = 2;
+        panelPrincipal.add(panel_boton, gbcPrincipal);
+
+        container.add(panelPrincipal, BorderLayout.NORTH);
     }
 }

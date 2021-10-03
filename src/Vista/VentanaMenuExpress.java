@@ -1,56 +1,53 @@
 package Vista;
 
+import Clases.Cliente;
+import Clases.ConjuntoMesas;
+import Clases.Pedido;
+import Clases.Platillo;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import java.awt.Insets;
-import Vista.VentanaPedidos;
-import java.util.ArrayList;
-import Clases.Pedido;
-import Clases.Platillo;
-import Clases.Cliente;
-import Clases.ConjuntoMesas;
-import javax.swing.JOptionPane;
 
-public class VentanaMenu extends JFrame {
+public class VentanaMenuExpress extends JFrame {
 
-    private int numero_mesa;
-    private ArrayList<Pedido> pedidos;
-    private Platillo platillo_seleccionado;
     private ArrayList<Cliente> clientes;
     private ArrayList<Cliente> clientesExpress;
+    private ArrayList<Pedido> pedidos;
+    private Platillo platillo_seleccionado;
 
-    public VentanaMenu(ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress) {
-        super("Menu");
-        this.numero_mesa = -1;
-        pedidos = new ArrayList();
+    public VentanaMenuExpress(ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress) {
+        super("Ventana Menu Express");
         this.clientes = clientes;
         this.clientesExpress = clientesExpress;
+        pedidos = new ArrayList();
     }
 
-    public void init(ConjuntoMesas mesas) {
-        setSize(450, 500);
-        setLocationRelativeTo(null);
+    public void iniciar(String nombre, String telefono, String direccion, ConjuntoMesas mesas) {
+        setSize(600, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        AjustarComponentes(getContentPane(), mesas);
+        setLocationRelativeTo(null);
         setResizable(false);
+        ajustarComponentes(getContentPane(), nombre, telefono, direccion, mesas);
         setVisible(true);
     }
 
-    public void AjustarComponentes(Container container, ConjuntoMesas mesas) {
-
-        JPanel panel = new JPanel(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
+    public void ajustarComponentes(Container container, String nombre, String telefono, String direccion, ConjuntoMesas mesas) {
+        JPanel panelPrincipal = new JPanel(new GridBagLayout());
         JPanel panel1 = new JPanel(new GridLayout(2, 4));
         JPanel panel2 = new JPanel(new GridLayout(2, 2));
+        GridBagConstraints gbc = new GridBagConstraints();
+
         JButton btn1 = new JButton();
         JButton btn2 = new JButton();
         JButton btn3 = new JButton();
@@ -91,13 +88,9 @@ public class VentanaMenu extends JFrame {
 
         JLabel lab1 = new JLabel("Cantidad: ");
         JTextField txt1 = new JTextField(5);
-        JLabel lab2 = new JLabel("Numero de mesa:     ");
-        JLabel lab3 = new JLabel((numero_mesa + 1) + "");
 
         panel2.add(lab1);
         panel2.add(txt1);
-        panel2.add(lab2);
-        panel2.add(lab3);
 
         btn1.addActionListener((e) -> {
             Platillo cola_cola = new Platillo("Coca Cola", 1000);
@@ -131,57 +124,70 @@ public class VentanaMenu extends JFrame {
             Platillo sandwich = new Platillo("Sandwich de Jamon y Queso", 1500);
             setPlatillo(sandwich);
         });
+
         btnAgregar.addActionListener((e) -> {
-            if (this.platillo_seleccionado == null || txt1.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Debe seleccionar un platillo y digitar una cantidad");
-            } else {
-                Pedido pedido = new Pedido(Integer.parseInt(txt1.getText()), platillo_seleccionado);
-                pedidos.add(pedido);
-                JOptionPane.showMessageDialog(null, "Recuerde que al final debe darle click en 'aceptar pedido' ");
+            int contador = 0;
+            for (int i = 0; i < txt1.getText().length(); i++) {
+                if (Character.isDigit(txt1.getText().charAt(i))) {
+                    contador++;
+                }
+            }
+            if (contador == txt1.getText().length()) {
+                if (platillo_seleccionado == null || txt1.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar un platillo y digitar una cantidad");
+                } else {
+                    Pedido pedido = new Pedido(Integer.parseInt(txt1.getText()), platillo_seleccionado);
+                    pedidos.add(pedido);
+                    JOptionPane.showMessageDialog(null, "Recuerde al final darle click en 'aceptar pedido'");
+                }
             }
         });
 
         btn_ver_pedidos.addActionListener((e) -> {
-            VentanaPedidos vista = new VentanaPedidos(pedidos, numero_mesa, clientes, clientesExpress);
-            vista.init(mesas, "Menu");
-            setVisible(false);
+            if (platillo_seleccionado == null) {
+                JOptionPane.showMessageDialog(null, "Recuerde que debe darle click en 'aceptar pedido' para poder visualizarlo");
+            }
+            for (int i = 0; i < clientesExpress.size(); i++) {
+                if (clientesExpress.get(i).getNombre().equals(nombre)) {
+                    VentanaPedidoExpress vista = new VentanaPedidoExpress(clientesExpress.get(i).getPedidos(), clientes, clientesExpress);
+                    vista.iniciar(nombre, telefono, "express", mesas);
+                    setVisible(false);
+                }
+            }
         });
 
         btn_aceptar.addActionListener((e) -> {
-            mesas.getMesas().get(numero_mesa).setPedidos(pedidos);
+            Cliente cliente = new Cliente(nombre, direccion, telefono, pedidos);
+            clientesExpress.add(cliente);
         });
 
         regresar.addActionListener((e) -> {
-            VentanaConjuntoMesas vista = new VentanaConjuntoMesas(mesas, clientes, clientesExpress);
-            vista.init();
+            VentanaExpress ventana = new VentanaExpress(clientes, clientesExpress);
+            ventana.iniciar(mesas);
             setVisible(false);
         });
 
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.insets = new Insets(5, 5, 20, 5);
-        panel.add(panel1, gbc);
+        panelPrincipal.add(panel1, gbc);
         gbc.gridx = 0;
         gbc.gridy = 1;
-        panel.add(panel2, gbc);
+        panelPrincipal.add(panel2, gbc);
         gbc.gridx = 0;
         gbc.gridy = 2;
-        panel.add(btnAgregar, gbc);
+        panelPrincipal.add(btnAgregar, gbc);
         gbc.gridx = 0;
         gbc.gridy = 3;
-        panel.add(btn_ver_pedidos, gbc);
+        panelPrincipal.add(btn_ver_pedidos, gbc);
         gbc.gridx = 0;
         gbc.gridy = 4;
-        panel.add(btn_aceptar, gbc);
+        panelPrincipal.add(btn_aceptar, gbc);
         gbc.gridx = 0;
         gbc.gridy = 5;
-        panel.add(regresar, gbc);
+        panelPrincipal.add(regresar, gbc);
 
-        container.add(panel, BorderLayout.NORTH);
-    }
-
-    public void setMesa(int numero_mesa) {
-        this.numero_mesa = numero_mesa;
+        container.add(panelPrincipal, BorderLayout.NORTH);
     }
 
     public void setPlatillo(Platillo platillo) {
