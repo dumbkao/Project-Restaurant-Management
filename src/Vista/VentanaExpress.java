@@ -25,7 +25,7 @@ public class VentanaExpress extends JFrame {
     }
 
     public void iniciar(ConjuntoMesas mesas) {
-        setSize(600, 600);
+        setSize(500, 500);
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -50,10 +50,11 @@ public class VentanaExpress extends JFrame {
         btnAgregar.addActionListener((e) -> {
             String nombre = JOptionPane.showInputDialog("Ingrese el nombre");
             String telefono = JOptionPane.showInputDialog("Ingrese el telefono");
+            String direccion = JOptionPane.showInputDialog("Ingrese la direccion");
 
-            if (!nombre.equals("") && !telefono.equals("")) {
+            if ((nombre != null && telefono != null && direccion != null) && (!nombre.equals("") && !telefono.equals("") && !direccion.equals(""))) {
                 VentanaMenuExpress menu = new VentanaMenuExpress(clientes, clientesExpress);
-                menu.iniciar(nombre, "Direccion", telefono, mesas);
+                menu.iniciar(nombre, direccion, telefono, mesas);
                 setVisible(false);
             }
         });

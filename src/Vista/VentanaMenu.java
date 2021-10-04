@@ -131,13 +131,22 @@ public class VentanaMenu extends JFrame {
             Platillo sandwich = new Platillo("Sandwich de Jamon y Queso", 1500);
             setPlatillo(sandwich);
         });
+
         btnAgregar.addActionListener((e) -> {
-            if (this.platillo_seleccionado == null || txt1.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Debe seleccionar un platillo y digitar una cantidad");
-            } else {
-                Pedido pedido = new Pedido(Integer.parseInt(txt1.getText()), platillo_seleccionado);
-                pedidos.add(pedido);
-                JOptionPane.showMessageDialog(null, "Recuerde que al final debe darle click en 'aceptar pedido' ");
+            int contador = 0;
+            for (int i = 0; i < txt1.getText().length(); i++) {
+                if (Character.isDigit(txt1.getText().charAt(i))) {
+                    contador++;
+                }
+            }
+            if (contador == txt1.getText().length()) {
+                if (this.platillo_seleccionado == null || txt1.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar un platillo y digitar una cantidad");
+                } else {
+                    Pedido pedido = new Pedido(Integer.parseInt(txt1.getText()), platillo_seleccionado);
+                    pedidos.add(pedido);
+                    JOptionPane.showMessageDialog(null, "Recuerde que al final debe darle click en 'aceptar pedido' ");
+                }
             }
         });
 
@@ -148,7 +157,11 @@ public class VentanaMenu extends JFrame {
         });
 
         btn_aceptar.addActionListener((e) -> {
-            mesas.getMesas().get(numero_mesa).setPedidos(pedidos);
+            if (pedidos.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No hay pedidos", "No ha agregado ninguna orden", JOptionPane.ERROR_MESSAGE);
+            } else {
+                mesas.getMesas().get(numero_mesa).setPedidos(pedidos);
+            }
         });
 
         regresar.addActionListener((e) -> {

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vista;
 
 import java.awt.Container;
@@ -19,14 +14,11 @@ import Clases.Pedido;
 import Vista.VentanaFactura;
 import Clases.Cliente;
 import Clases.ConjuntoMesas;
+import java.awt.Insets;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author hilla
- */
 public class VentanaPedidosLlevar extends JFrame {
 
     private ArrayList<Cliente> clientes;
@@ -37,6 +29,14 @@ public class VentanaPedidosLlevar extends JFrame {
         super("Pedidos para llevar");
         this.clientes = clientes;
         this.clientesExpress = clientesExpress;
+    }
+
+    public void init(ConjuntoMesas mesas) {
+        setSize(600, 600);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        ajustarComponentes(getContentPane(), mesas);
+        setVisible(true);
     }
 
     public void ajustarComponentes(Container c, ConjuntoMesas mesas) {
@@ -60,7 +60,7 @@ public class VentanaPedidosLlevar extends JFrame {
         JTable tabla = new JTable(datos, columnas);
         JScrollPane scroll = new JScrollPane(tabla);
         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        mostrarCliente = new JButton("Mostrar cliente");
+        mostrarCliente = new JButton("Ver cliente");
         mostrarCliente.addActionListener((e) -> {
             if (tabla.getRowCount() != 0) {
                 String fecha = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
@@ -80,19 +80,13 @@ public class VentanaPedidosLlevar extends JFrame {
         gbc.gridx = 0;
         gbc.gridy = 1;
         mainPanel.add(regresar, gbc);
+
+        gbc.insets = new Insets(10, 10, 10, 10);
         gbc.gridx = 0;
         gbc.gridy = 2;
         mainPanel.add(mostrarCliente, gbc);
 
         c.add(mainPanel);
-    }
-
-    public void init(ConjuntoMesas mesas) {
-        setSize(600, 600);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        ajustarComponentes(getContentPane(), mesas);
-        setVisible(true);
     }
 
 }

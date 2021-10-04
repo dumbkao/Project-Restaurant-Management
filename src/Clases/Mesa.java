@@ -8,11 +8,7 @@ public class Mesa {
     private int comensales; //cantidad de personas en la mesa
     private boolean disponible; //si la mesa está ocupada o no
     private int numero;
-
-    public String getMesero() {
-        return mesero;
-    }
-    private final String mesero;
+    private String mesero;
 
     public Mesa() {
         pedidos = new ArrayList();
@@ -21,7 +17,7 @@ public class Mesa {
         mesero = "";
         numero = 0;
     }
-    
+
     public void setNumero(int numero) {
         this.numero = numero;
     }
@@ -53,8 +49,16 @@ public class Mesa {
     public void setDisponibilidad(boolean n) {
         this.disponible = n;
     }
-    
+
     public void setPedidos(ArrayList<Pedido> pedidos) {
         this.pedidos = pedidos;
+    }
+
+    public String getMesero() {
+        return mesero;
+    }
+
+    public void setMesero(String mesero) {
+        this.mesero = mesero;
     }
 }

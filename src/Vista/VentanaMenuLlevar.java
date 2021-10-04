@@ -36,6 +36,15 @@ public class VentanaMenuLlevar extends JFrame {
         this.clientesExpress = clientesExpress;
     }
 
+    public void init(String nombre, String telefono, ConjuntoMesas mesas) {
+        setSize(450, 500);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        AjustarComponentes(getContentPane(), nombre, telefono, mesas);
+        setResizable(false);
+        setVisible(true);
+    }
+
     public void AjustarComponentes(Container container, String nombre, String telefono, ConjuntoMesas mesas) {
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -150,8 +159,12 @@ public class VentanaMenuLlevar extends JFrame {
         });
 
         btn_aceptar.addActionListener((e) -> {
-            Cliente cliente = new Cliente(nombre, "direccion", telefono, pedidos);
-            clientes.add(cliente);
+            if (pedidos.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No hay pedidos", "No ha agregado ninguna orden", JOptionPane.ERROR_MESSAGE);
+            } else {
+                Cliente cliente = new Cliente(nombre, "direccion", telefono, pedidos);
+                clientes.add(cliente);
+            }
         });
 
         regresar.addActionListener((e) -> {
@@ -181,15 +194,6 @@ public class VentanaMenuLlevar extends JFrame {
         panel.add(regresar, gbc);
 
         container.add(panel, BorderLayout.NORTH);
-    }
-
-    public void init(String nombre, String telefono, ConjuntoMesas mesas) {
-        setSize(450, 450);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        AjustarComponentes(getContentPane(), nombre, telefono, mesas);
-        setResizable(false);
-        setVisible(true);
     }
 
     public void setPlatillo(Platillo platillo) {

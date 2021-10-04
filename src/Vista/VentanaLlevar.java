@@ -41,7 +41,7 @@ public class VentanaLlevar extends JFrame {
             String nombre = JOptionPane.showInputDialog("Ingrese el nombre");
             String telefono = JOptionPane.showInputDialog("Ingrese su telefono");
 
-            if (!nombre.equals("") && !telefono.equals("")) {
+            if ((nombre != null && telefono != null) && (!nombre.equals("") && !telefono.equals(""))) {
                 VentanaMenuLlevar menu = new VentanaMenuLlevar(clientes, clientesExpress);
                 menu.init(nombre, telefono, mesas);
                 setVisible(false);

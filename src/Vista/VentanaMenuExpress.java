@@ -34,7 +34,7 @@ public class VentanaMenuExpress extends JFrame {
     }
 
     public void iniciar(String nombre, String telefono, String direccion, ConjuntoMesas mesas) {
-        setSize(600, 600);
+        setSize(450, 500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -157,8 +157,12 @@ public class VentanaMenuExpress extends JFrame {
         });
 
         btn_aceptar.addActionListener((e) -> {
-            Cliente cliente = new Cliente(nombre, direccion, telefono, pedidos);
-            clientesExpress.add(cliente);
+            if (pedidos.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No hay pedidos", "No ha agregado ninguna orden", JOptionPane.ERROR_MESSAGE);
+            } else {
+                Cliente cliente = new Cliente(nombre, direccion, telefono, pedidos);
+                clientesExpress.add(cliente);
+            }
         });
 
         regresar.addActionListener((e) -> {

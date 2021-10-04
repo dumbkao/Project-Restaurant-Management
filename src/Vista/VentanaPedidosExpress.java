@@ -30,7 +30,7 @@ public class VentanaPedidosExpress extends JFrame {
     }
 
     public void iniciar(ConjuntoMesas mesas) {
-        setSize(600, 700);
+        setSize(600, 600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         ajustarComponentes(getContentPane(), mesas);
@@ -44,7 +44,7 @@ public class VentanaPedidosExpress extends JFrame {
         btnRegresar = new JButton("Regresar");
         btnMostrarCliente = new JButton("Ver cliente");
 
-        String columnas[] = {"Nombre", "Telefono", "Direccion"};
+        String columnas[] = {"Nombre", "Direccion", "Telefono"};
         String datos[][] = new String[clientesExpress.size()][columnas.length];
         for (int i = 0; i < clientesExpress.size(); i++) {
             String detalle[] = {clientesExpress.get(i).getNombre(), clientesExpress.get(i).getNumero(), clientesExpress.get(i).getDireccion()};
