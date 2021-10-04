@@ -61,18 +61,22 @@ public class VentanaPedidosLlevar extends JFrame {
         JScrollPane scroll = new JScrollPane(tabla);
         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         mostrarCliente = new JButton("Ver cliente");
+
         mostrarCliente.addActionListener((e) -> {
             if (tabla.getRowCount() != 0) {
                 String fecha = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
                 int fila = tabla.getSelectedRow();
-                Factura factura = new Factura("Juan", "Llevar", "Ventanilla", fila, fecha, clientes.get(fila).getPedidos());
-                VentanaFacturaLlevar vista = new VentanaFacturaLlevar(factura, clientes, clientesExpress);
-                vista.init(mesas);
-                setVisible(false);
+                if (fila != -1) {
+                    Factura factura = new Factura(clientes.get(fila).getNombre(), "Llevar", "Ventanilla", fila, fecha, clientes.get(fila).getPedidos());
+                    VentanaFacturaLlevar vista = new VentanaFacturaLlevar(factura, clientes, clientesExpress);
+                    vista.init(mesas);
+                    setVisible(false);
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "NO HAY CLIENTES");
             }
         });
+
         gbc.gridx = 0;
         gbc.gridy = 0;
         mainPanel.add(scroll, gbc);

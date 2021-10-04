@@ -37,6 +37,15 @@ public class VentanaFacturaLlevar extends JFrame {
         this.clientesExpress = clientesExpress;
     }
 
+    public void init(ConjuntoMesas mesas) {
+        setSize(570, 680);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        ajustarComponentes(getContentPane(), mesas);
+        setVisible(true);
+    }
+
     public void ajustarComponentes(Container container, ConjuntoMesas mesas) {
         String espacios = "         ";
         JPanel panel_principal = new JPanel(new GridBagLayout());
@@ -137,14 +146,5 @@ public class VentanaFacturaLlevar extends JFrame {
         panel_principal.add(panel_boton, constraint);
 
         container.add(panel_principal, BorderLayout.NORTH);
-    }
-
-    public void init(ConjuntoMesas mesas) {
-        setSize(570, 640);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setResizable(false);
-        ajustarComponentes(getContentPane(), mesas);
-        setVisible(true);
     }
 }

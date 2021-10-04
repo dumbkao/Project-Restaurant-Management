@@ -28,12 +28,14 @@ public class VentanaMenuLlevar extends JFrame {
     private ArrayList<Cliente> clientesExpress;
     private ArrayList<Pedido> pedidos;
     private Platillo platillo_seleccionado;
+    private boolean aceptado;
 
     public VentanaMenuLlevar(ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress) {
         super("Menu de llevar");
         this.clientes = clientes;
         pedidos = new ArrayList();
         this.clientesExpress = clientesExpress;
+        aceptado = false;
     }
 
     public void init(String nombre, String telefono, ConjuntoMesas mesas) {
@@ -140,14 +142,27 @@ public class VentanaMenuLlevar extends JFrame {
                 } else {
                     Pedido pedido = new Pedido(Integer.parseInt(txt1.getText()), platillo_seleccionado);
                     pedidos.add(pedido);
-                    JOptionPane.showMessageDialog(null, "Recuerde al final darle click en 'aceptar pedido'");
+                    JOptionPane.showMessageDialog(null, "Recuerde  darle click en 'aceptar pedido'");
                 }
             }
         });
 
-        btn_ver_pedidos.addActionListener((e) -> {
+        /*btn_ver_pedidos.addActionListener((e) -> {
             if (platillo_seleccionado == null) {
                 JOptionPane.showMessageDialog(null, "Recuerde que debe darle click en 'aceptar pedido' para poder visualizarlo");
+            }
+            for (int i = 0; i < clientes.size(); i++) {
+                if (clientes.get(i).getNombre().equals(nombre)) {
+                    VentanaPedidoCliente vista = new VentanaPedidoCliente(clientes.get(i).getPedidos(), clientes, clientesExpress);
+                    vista.init(nombre, telefono, "llevar", mesas);
+                    setVisible(false);
+                }
+            }
+        });*/
+        
+        btn_ver_pedidos.addActionListener((e) -> {
+            if (aceptado == false) {
+                JOptionPane.showMessageDialog(null, "No hay pedidos", "No ha agregado ninguna orden", JOptionPane.ERROR_MESSAGE);
             }
             for (int i = 0; i < clientes.size(); i++) {
                 if (clientes.get(i).getNombre().equals(nombre)) {
@@ -164,6 +179,7 @@ public class VentanaMenuLlevar extends JFrame {
             } else {
                 Cliente cliente = new Cliente(nombre, "direccion", telefono, pedidos);
                 clientes.add(cliente);
+                aceptado = true;
             }
         });
 

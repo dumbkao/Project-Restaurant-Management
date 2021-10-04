@@ -67,10 +67,12 @@ public class VentanaPedidosExpress extends JFrame {
             } else {
                 String fecha = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
                 int fila = tabla.getSelectedRow();
-                Factura factura = new Factura("Juan", "Express", "Yoshi", fila, fecha, clientesExpress.get(fila).getPedidos());
-                VentanaFacturaExpress ventana = new VentanaFacturaExpress(factura, clientes, clientesExpress);
-                ventana.iniciar(mesas);
-                setVisible(false);
+                if (fila != -1) {
+                    Factura factura = new Factura(clientesExpress.get(fila).getNombre(), "Express", "Motorizado", fila, fecha, clientesExpress.get(fila).getPedidos());
+                    VentanaFacturaExpress ventana = new VentanaFacturaExpress(factura, clientes, clientesExpress);
+                    ventana.iniciar(mesas);
+                    setVisible(false);
+                }
             }
         });
 

@@ -37,6 +37,15 @@ public class VentanaFactura extends JFrame {
         this.clientesExpress = clientesExpress;
     }
 
+    public void init(ConjuntoMesas mesas, String ventana) {
+        setSize(570, 680);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        ajustarComponentes(getContentPane(), mesas, ventana);
+        setVisible(true);
+    }
+
     public void ajustarComponentes(Container container, ConjuntoMesas mesas, String ventana) {
         String espacios = "         ";
         JPanel panel_principal = new JPanel(new GridBagLayout());
@@ -141,12 +150,4 @@ public class VentanaFactura extends JFrame {
         container.add(panel_principal, BorderLayout.NORTH);
     }
 
-    public void init(ConjuntoMesas mesas, String ventana) {
-        setSize(570, 680);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setResizable(false);
-        ajustarComponentes(getContentPane(), mesas, ventana);
-        setVisible(true);
-    }
 }

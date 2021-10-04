@@ -49,8 +49,8 @@ public class VentanaExpress extends JFrame {
 
         btnAgregar.addActionListener((e) -> {
             String nombre = JOptionPane.showInputDialog("Ingrese el nombre");
-            String telefono = JOptionPane.showInputDialog("Ingrese el telefono");
             String direccion = JOptionPane.showInputDialog("Ingrese la direccion");
+            String telefono = JOptionPane.showInputDialog("Ingrese el telefono");
 
             if ((nombre != null && telefono != null && direccion != null) && (!nombre.equals("") && !telefono.equals("") && !direccion.equals(""))) {
                 VentanaMenuExpress menu = new VentanaMenuExpress(clientes, clientesExpress);

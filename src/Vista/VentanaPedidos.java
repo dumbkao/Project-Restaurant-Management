@@ -34,6 +34,15 @@ public class VentanaPedidos extends JFrame {
         this.clientesExpress = clientesExpress;
     }
 
+    public void init(ConjuntoMesas mesas, String ventana) {
+        setSize(600, 600);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        ajustarComponentes(getContentPane(), mesas, ventana);
+        setResizable(false);
+        setVisible(true);
+    }
+
     public void ajustarComponentes(Container container, ConjuntoMesas mesas, String ventana) {
         JPanel panel_principal = new JPanel(new GridBagLayout());
         GridBagConstraints constraint = new GridBagConstraints();
@@ -83,14 +92,5 @@ public class VentanaPedidos extends JFrame {
         constraint.gridy = 2;
         panel_principal.add(panel_boton, constraint);
         container.add(panel_principal, BorderLayout.NORTH);
-    }
-
-    public void init(ConjuntoMesas mesas, String ventana) {
-        setSize(600, 500);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        ajustarComponentes(getContentPane(), mesas, ventana);
-        setResizable(false);
-        setVisible(true);
     }
 }

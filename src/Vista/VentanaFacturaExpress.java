@@ -38,7 +38,7 @@ public class VentanaFacturaExpress extends JFrame {
     }
 
     public void iniciar(ConjuntoMesas mesas) {
-        setSize(800, 800);
+        setSize(570, 680);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -46,102 +46,6 @@ public class VentanaFacturaExpress extends JFrame {
         setVisible(true);
     }
 
-    /*public void ajustarComponentes(Container container, ConjuntoMesas mesas) {
-        pedidos = factura.getPedidos();
-
-        JPanel panelPrincipal = new JPanel(new GridBagLayout());
-        GridBagConstraints gbcPrincipal = new GridBagConstraints();
-        GridBagConstraints gbc2 = new GridBagConstraints();
-
-        JPanel panel1 = new JPanel();
-        JPanel subPanel1 = new JPanel(new GridLayout());
-        JPanel subPanel2 = new JPanel(new GridLayout());
-        JPanel panel2 = new JPanel(new GridBagLayout());
-        JPanel panel3 = new JPanel(new GridLayout());
-        JPanel panel4 = new JPanel(new FlowLayout());
-
-        btnRegresar = new JButton("Regresar");
-
-        String espacios = "         ";
-
-        JLabel nombre = new JLabel("Nombre: " + factura.getNombre() + espacios);
-        JLabel servicio = new JLabel("Servicio: " + factura.getServicio());
-        JLabel mesero = new JLabel("Mesero: " + factura.getMesero());
-        JLabel numero = new JLabel(espacios + "Fac. Nro: " + factura.getNumero());
-        JLabel fecha = new JLabel(espacios + "Fecha: " + factura.getFecha());
-
-        Font calibri = new Font("Calibri", 3, 15);
-        nombre.setFont(calibri);
-        servicio.setFont(calibri);
-        mesero.setFont(calibri);
-        numero.setFont(calibri);
-        fecha.setFont(calibri);
-
-        subPanel1.add(nombre);
-        subPanel1.add(servicio);
-        subPanel1.add(mesero);
-        subPanel1.add(numero);
-        subPanel1.add(fecha);
-
-        String columnas[] = {"Cantidad", "Nombre", "Precio"};
-
-        String datos[][] = new String[pedidos.size()][columnas.length];
-        for (int i = 0; i < pedidos.size(); i++) {
-            String data[] = {pedidos.get(i).getCantidad() + "", pedidos.get(i).getDetalle().getNombre(), pedidos.get(i).getDetalle().getPrecio() + ""};
-            datos[i] = data;
-        }
-        JTable tabla = new JTable(datos, columnas);
-        tabla.getColumnModel().getColumn(1).setPreferredWidth(200);
-
-        tabla.setFont(calibri);
-        JScrollPane scroll = new JScrollPane(tabla);
-        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-
-        JLabel imagen = new JLabel();
-        ImageIcon imagen_icono = new ImageIcon("src/images/restaurante.png");
-        imagen.setIcon(imagen_icono);
-
-        panel1.add(subPanel1);
-        panel1.add(imagen);
-        panel1.add(subPanel2);
-
-        gbc2.gridx = 0;
-        gbc2.gridy = 0;
-        panel2.add(tabla.getTableHeader(), gbc2);
-        gbc2.gridx = 0;
-        gbc2.gridy = 1;
-        panel2.add(scroll, gbc2);
-
-        JLabel total = new JLabel("Total: " + factura.Total());
-        JLabel iva = new JLabel("IVA: " + factura.Iva(factura.Total()));
-        JLabel total_iva = new JLabel("Total IVA: " + (factura.Total() + factura.Iva(factura.Total())));
-
-        total.setFont(calibri);
-        iva.setFont(calibri);
-        total_iva.setFont(calibri);
-
-        panel3.add(total);
-        panel3.add(iva);
-        panel3.add(total_iva);
-
-        panel4.add(btnRegresar);
-
-        gbcPrincipal.insets = new Insets(5, 5, 5, 5);
-        panelPrincipal.add(panel1, gbcPrincipal);
-
-        gbcPrincipal.gridx = 0;
-        gbcPrincipal.gridy = 1;
-        panelPrincipal.add(panel2, gbcPrincipal);
-
-        gbcPrincipal.gridx = 0;
-        gbcPrincipal.gridy = 2;
-        panelPrincipal.add(panel3, gbcPrincipal);
-
-        gbcPrincipal.gridx = 0;
-        gbcPrincipal.gridy = 3;
-        panelPrincipal.add(panel4, gbcPrincipal);
-        container.add(panelPrincipal, BorderLayout.NORTH);
-    }*/
     public void ajustarComponentes(Container container, ConjuntoMesas mesas) {
         String espacios = "         ";
         JPanel panel_principal = new JPanel(new GridBagLayout());
