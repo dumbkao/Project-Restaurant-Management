@@ -50,10 +50,15 @@ public class Proyecto {
         mesas.AgregarMesa(mesa17);
         mesas.AgregarMesa(mesa18);
         mesas.AgregarMesa(mesa19);
-
+        for(int i=0; i<20;i++){
+            mesas.getMesas().get(i).setNumero(i);
+        }
         ArrayList<Cliente> clientes = new ArrayList();
         ArrayList<Cliente> clientesExpress = new ArrayList();
         ArrayList<String> meseros = new ArrayList();
+        meseros.add("Andres");
+        meseros.add("Ramses");
+        meseros.add("Hillary");
         VentanaRestaurante vista = new VentanaRestaurante(clientes, clientesExpress,meseros);
         vista.init(mesas);
     }
