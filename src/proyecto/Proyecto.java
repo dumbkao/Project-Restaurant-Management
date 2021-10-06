@@ -53,7 +53,8 @@ public class Proyecto {
 
         ArrayList<Cliente> clientes = new ArrayList();
         ArrayList<Cliente> clientesExpress = new ArrayList();
-        VentanaRestaurante vista = new VentanaRestaurante(clientes, clientesExpress);
+        ArrayList<String> meseros = new ArrayList();
+        VentanaRestaurante vista = new VentanaRestaurante(clientes, clientesExpress,meseros);
         vista.init(mesas);
     }
 }

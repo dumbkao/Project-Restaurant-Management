@@ -19,8 +19,9 @@ public class VentanaTipoPedido extends JFrame {
     private final JButton regresar;
     private ArrayList<Cliente> clientes;
     private ArrayList<Cliente> clientesExpress;
+    private ArrayList<String> meseros;
 
-    public VentanaTipoPedido(ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress) {
+    public VentanaTipoPedido(ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress, ArrayList<String> meseros) {
         super("Tipo de Pedido");
         local = new JButton("Local");
         llevar = new JButton("Llevar");
@@ -28,6 +29,7 @@ public class VentanaTipoPedido extends JFrame {
         regresar = new JButton("Regresar");
         this.clientes = clientes;
         this.clientesExpress = clientesExpress;
+        this.meseros=meseros;
     }
 
     public void init(ConjuntoMesas mesas) {
@@ -43,23 +45,23 @@ public class VentanaTipoPedido extends JFrame {
         GridBagConstraints constraint = new GridBagConstraints();
 
         local.addActionListener((e) -> {
-            VentanaConjuntoMesas vista = new VentanaConjuntoMesas(mesas, clientes, clientesExpress);
+            VentanaConjuntoMesas vista = new VentanaConjuntoMesas(mesas, clientes, clientesExpress,meseros);
             vista.init();
             setVisible(false);
 
         });
         llevar.addActionListener((e) -> {
-            VentanaLlevar ventana = new VentanaLlevar(clientes, clientesExpress);
+            VentanaLlevar ventana = new VentanaLlevar(clientes, clientesExpress,meseros);
             ventana.init(mesas);
             setVisible(false);
         });
         express.addActionListener((e) -> {
-            VentanaExpress ventana = new VentanaExpress(clientes, clientesExpress);
+            VentanaExpress ventana = new VentanaExpress(clientes, clientesExpress,meseros);
             ventana.iniciar(mesas);
             setVisible(false);
         });
         regresar.addActionListener((e) -> {
-            VentanaRestaurante vista = new VentanaRestaurante(clientes, clientesExpress);
+            VentanaRestaurante vista = new VentanaRestaurante(clientes, clientesExpress,meseros);
             vista.init(mesas);
             setVisible(false);
         });

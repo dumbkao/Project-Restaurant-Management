@@ -19,15 +19,17 @@ public class VentanaRestaurante extends JFrame {
     private final JLabel nombreRestaurante;
     private ArrayList<Cliente> clientes;
     private ArrayList<Cliente> clientesExpress;
+    private ArrayList<String> meseros;
     JPanel pnlPrincipal;
 
-    public VentanaRestaurante(ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress) {
+    public VentanaRestaurante(ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress, ArrayList<String> meseros) {
         super("Restaurante uwu");
         btnAdmi = new JButton("Módulo administrador");
         btnMesero = new JButton("Módulo mesero");
         nombreRestaurante = new JLabel("Restaurante uwu");
         this.clientes = clientes;
         this.clientesExpress = clientesExpress;
+        this.meseros=meseros;
     }
 
     public void ajustarComponentes(Container c, ConjuntoMesas mesas) {
@@ -49,8 +51,13 @@ public class VentanaRestaurante extends JFrame {
         c.add(pnlPrincipal);
 
         btnMesero.addActionListener((e) -> {
-            VentanaTipoPedido vista = new VentanaTipoPedido(clientes, clientesExpress);
+            VentanaTipoPedido vista = new VentanaTipoPedido(clientes, clientesExpress,meseros);
             vista.init(mesas);
+            setVisible(false);
+        });
+        btnAdmi.addActionListener((e) -> {
+            VentanaAdministracion admi=new VentanaAdministracion(clientes,clientesExpress,meseros);
+            admi.init(mesas);
             setVisible(false);
         });
     }

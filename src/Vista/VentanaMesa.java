@@ -25,6 +25,7 @@ public class VentanaMesa extends JFrame {
     private final ArrayList<Cliente> clientes;
     private final ArrayList<Cliente> clientesExpress;
     private final ArrayList<Pedido> pedidos;
+    private ArrayList<String> meseros;
     private final Mesa mesa;
     private JButton btnVerPedidos;
     private JButton btnCambiarDispo;
@@ -32,12 +33,13 @@ public class VentanaMesa extends JFrame {
     private JButton regresar;
     private JButton btnCambiarMesa;
     
-    public VentanaMesa(Mesa mesa, String titulo, ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress) {
+    public VentanaMesa(Mesa mesa, String titulo, ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress,ArrayList<String> meseros) {
         super(titulo);
         this.mesa = mesa;
         pedidos = mesa.getPedidos();
         this.clientes = clientes;
         this.clientesExpress = clientesExpress;
+        this.meseros=meseros;
     }
     
     public void init(ConjuntoMesas mesas) {
@@ -69,14 +71,14 @@ public class VentanaMesa extends JFrame {
         btnCambiarMesa = new JButton("Cambiar de mesa");
         
         btnVerPedidos.addActionListener((e) -> {
-            VentanaPedidos vista = new VentanaPedidos(pedidos, mesa.getNumero(), clientes, clientesExpress);
+            VentanaPedidos vista = new VentanaPedidos(pedidos, mesa.getNumero(), clientes, clientesExpress,meseros);
             vista.init(mesas, "Mesa");
             setVisible(false);
         });
         
         btnVerFactura.addActionListener((e) -> {
             Factura factura = new Factura("Mesa", "Local", mesa.getMesero(), (mesa.getNumero() + 1), "29/09/2021", pedidos);
-            VentanaFactura vista = new VentanaFactura(factura, mesa.getNumero(), clientes, clientesExpress);
+            VentanaFactura vista = new VentanaFactura(factura, mesa.getNumero(), clientes, clientesExpress,meseros);
             vista.init(mesas, "Mesa");
             setVisible(false);
         });
@@ -128,14 +130,14 @@ public class VentanaMesa extends JFrame {
                 
                 JOptionPane.showMessageDialog(null, "Usted ha cambiado de mesa con exito", "CAMBIO EXITOSO", JOptionPane.INFORMATION_MESSAGE);
                 
-                VentanaConjuntoMesas vista = new VentanaConjuntoMesas(mesas, clientes, clientesExpress);
+                VentanaConjuntoMesas vista = new VentanaConjuntoMesas(mesas, clientes, clientesExpress,meseros);
                 vista.init();
                 setVisible(false);
             }
         });
         
         regresar.addActionListener((e) -> {
-            VentanaConjuntoMesas vista = new VentanaConjuntoMesas(mesas, clientes, clientesExpress);
+            VentanaConjuntoMesas vista = new VentanaConjuntoMesas(mesas, clientes, clientesExpress,meseros);
             vista.init();
             setVisible(false);
         });

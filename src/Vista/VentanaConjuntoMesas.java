@@ -24,14 +24,16 @@ public class VentanaConjuntoMesas extends JFrame {
     private final JButton regresar;
     private final ArrayList<Cliente> clientes;
     private final ArrayList<Cliente> clientesExpress;
+    private ArrayList<String> meseros;
 
-    public VentanaConjuntoMesas(ConjuntoMesas mesas, ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress) {
+    public VentanaConjuntoMesas(ConjuntoMesas mesas, ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress, ArrayList<String> meseros) {
         super("Mesas");
         this.mesas = mesas;
         botones = new ArrayList();
         regresar = new JButton("Regresar");
         this.clientes = clientes;
         this.clientesExpress = clientesExpress;
+        this.meseros=meseros;
     }
 
     public void init() {
@@ -101,7 +103,7 @@ public class VentanaConjuntoMesas extends JFrame {
                         cant = Integer.parseInt(cantidad);
                         mesas.getMesas().get(0).setComensales(cant);
                         mesas.getMesas().get(0).setMesero(mesero);
-                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress);
+                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress,meseros);
                         vista.setMesa(0);
                         vista.init(mesas);
                         mesas.getMesas().get(0).setDisponibilidad(false);
@@ -109,8 +111,9 @@ public class VentanaConjuntoMesas extends JFrame {
                     }
                 }
             } else {
+               
                 mesas.getMesas().get(0).setNumero(0);
-                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(0), "Mesa 1", clientes, clientesExpress);
+                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(0), "Mesa 1", clientes, clientesExpress,meseros);
                 vista.init(mesas);
                 setVisible(false);
             }
@@ -140,11 +143,11 @@ public class VentanaConjuntoMesas extends JFrame {
                             contador++;
                         }
                     }
-                    if (contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
+                    if (valido == true && contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
                         cant = Integer.parseInt(cantidad);
                         mesas.getMesas().get(1).setComensales(cant);
                         mesas.getMesas().get(0).setMesero(mesero);
-                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress);
+                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress,meseros);
                         vista.setMesa(1);
                         vista.init(mesas);
                         mesas.getMesas().get(1).setDisponibilidad(false);
@@ -153,7 +156,7 @@ public class VentanaConjuntoMesas extends JFrame {
                 }
             } else {
                 mesas.getMesas().get(1).setNumero(1);
-                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(1), "Mesa 2", clientes, clientesExpress);
+                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(1), "Mesa 2", clientes, clientesExpress,meseros);
                 vista.init(mesas);
                 setVisible(false);
             }
@@ -183,11 +186,11 @@ public class VentanaConjuntoMesas extends JFrame {
                             contador++;
                         }
                     }
-                    if (contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
+                    if (valido == true && contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
                         cant = Integer.parseInt(cantidad);
                         mesas.getMesas().get(2).setComensales(cant);
                         mesas.getMesas().get(0).setMesero(mesero);
-                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress);
+                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress,meseros);
                         vista.setMesa(2);
                         vista.init(mesas);
                         mesas.getMesas().get(2).setDisponibilidad(false);
@@ -196,7 +199,7 @@ public class VentanaConjuntoMesas extends JFrame {
                 }
             } else {
                 mesas.getMesas().get(2).setNumero(2);
-                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(2), "Mesa 3", clientes, clientesExpress);
+                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(2), "Mesa 3", clientes, clientesExpress,meseros);
                 vista.init(mesas);
                 setVisible(false);
             }
@@ -226,11 +229,11 @@ public class VentanaConjuntoMesas extends JFrame {
                             contador++;
                         }
                     }
-                    if (contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
+                    if (valido == true && contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
                         cant = Integer.parseInt(cantidad);
                         mesas.getMesas().get(3).setComensales(cant);
                         mesas.getMesas().get(0).setMesero(mesero);
-                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress);
+                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress,meseros);
                         vista.setMesa(3);
                         vista.init(mesas);
                         mesas.getMesas().get(3).setDisponibilidad(false);
@@ -239,7 +242,7 @@ public class VentanaConjuntoMesas extends JFrame {
                 }
             } else {
                 mesas.getMesas().get(3).setNumero(3);
-                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(3), "Mesa 4", clientes, clientesExpress);
+                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(3), "Mesa 4", clientes, clientesExpress,meseros);
                 vista.init(mesas);
                 setVisible(false);
             }
@@ -269,11 +272,11 @@ public class VentanaConjuntoMesas extends JFrame {
                             contador++;
                         }
                     }
-                    if (contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
+                    if (valido == true && contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
                         cant = Integer.parseInt(cantidad);
                         mesas.getMesas().get(4).setComensales(cant);
                         mesas.getMesas().get(0).setMesero(mesero);
-                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress);
+                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress,meseros);
                         vista.setMesa(4);
                         vista.init(mesas);
                         mesas.getMesas().get(4).setDisponibilidad(false);
@@ -282,7 +285,7 @@ public class VentanaConjuntoMesas extends JFrame {
                 }
             } else {
                 mesas.getMesas().get(4).setNumero(4);
-                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(4), "Mesa 5", clientes, clientesExpress);
+                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(4), "Mesa 5", clientes, clientesExpress,meseros);
                 vista.init(mesas);
                 setVisible(false);
             }
@@ -312,11 +315,11 @@ public class VentanaConjuntoMesas extends JFrame {
                             contador++;
                         }
                     }
-                    if (contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
+                    if (valido == true && contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
                         cant = Integer.parseInt(cantidad);
                         mesas.getMesas().get(5).setComensales(cant);
                         mesas.getMesas().get(0).setMesero(mesero);
-                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress);
+                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress,meseros);
                         vista.setMesa(5);
                         vista.init(mesas);
                         mesas.getMesas().get(5).setDisponibilidad(false);
@@ -325,7 +328,7 @@ public class VentanaConjuntoMesas extends JFrame {
                 }
             } else {
                 mesas.getMesas().get(5).setNumero(5);
-                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(5), "Mesa 6", clientes, clientesExpress);
+                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(5), "Mesa 6", clientes, clientesExpress,meseros);
                 vista.init(mesas);
                 setVisible(false);
             }
@@ -355,11 +358,11 @@ public class VentanaConjuntoMesas extends JFrame {
                             contador++;
                         }
                     }
-                    if (contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
+                    if (valido == true && contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
                         cant = Integer.parseInt(cantidad);
                         mesas.getMesas().get(6).setComensales(cant);
                         mesas.getMesas().get(0).setMesero(mesero);
-                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress);
+                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress,meseros);
                         vista.setMesa(6);
                         vista.init(mesas);
                         mesas.getMesas().get(6).setDisponibilidad(false);
@@ -368,7 +371,7 @@ public class VentanaConjuntoMesas extends JFrame {
                 }
             } else {
                 mesas.getMesas().get(6).setNumero(6);
-                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(6), "Mesa 7", clientes, clientesExpress);
+                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(6), "Mesa 7", clientes, clientesExpress,meseros);
                 vista.init(mesas);
                 setVisible(false);
             }
@@ -398,11 +401,11 @@ public class VentanaConjuntoMesas extends JFrame {
                             contador++;
                         }
                     }
-                    if (contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
+                    if (valido == true && contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
                         cant = Integer.parseInt(cantidad);
                         mesas.getMesas().get(7).setComensales(cant);
                         mesas.getMesas().get(0).setMesero(mesero);
-                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress);
+                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress,meseros);
                         vista.setMesa(7);
                         vista.init(mesas);
                         mesas.getMesas().get(7).setDisponibilidad(false);
@@ -411,7 +414,7 @@ public class VentanaConjuntoMesas extends JFrame {
                 }
             } else {
                 mesas.getMesas().get(7).setNumero(7);
-                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(7), "Mesa 8", clientes, clientesExpress);
+                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(7), "Mesa 8", clientes, clientesExpress,meseros);
                 vista.init(mesas);
                 setVisible(false);
             }
@@ -441,11 +444,11 @@ public class VentanaConjuntoMesas extends JFrame {
                             contador++;
                         }
                     }
-                    if (contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
+                    if (valido == true && contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
                         cant = Integer.parseInt(cantidad);
                         mesas.getMesas().get(8).setComensales(cant);
                         mesas.getMesas().get(0).setMesero(mesero);
-                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress);
+                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress,meseros);
                         vista.setMesa(8);
                         vista.init(mesas);
                         mesas.getMesas().get(8).setDisponibilidad(false);
@@ -454,7 +457,7 @@ public class VentanaConjuntoMesas extends JFrame {
                 }
             } else {
                 mesas.getMesas().get(8).setNumero(8);
-                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(8), "Mesa 9", clientes, clientesExpress);
+                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(8), "Mesa 9", clientes, clientesExpress,meseros);
                 vista.init(mesas);
                 setVisible(false);
             }
@@ -484,11 +487,11 @@ public class VentanaConjuntoMesas extends JFrame {
                             contador++;
                         }
                     }
-                    if (contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
+                    if (valido == true && contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
                         cant = Integer.parseInt(cantidad);
                         mesas.getMesas().get(9).setComensales(cant);
                         mesas.getMesas().get(0).setMesero(mesero);
-                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress);
+                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress,meseros);
                         vista.setMesa(9);
                         vista.init(mesas);
                         mesas.getMesas().get(9).setDisponibilidad(false);
@@ -497,7 +500,7 @@ public class VentanaConjuntoMesas extends JFrame {
                 }
             } else {
                 mesas.getMesas().get(9).setNumero(9);
-                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(9), "Mesa 10", clientes, clientesExpress);
+                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(9), "Mesa 10", clientes, clientesExpress,meseros);
                 vista.init(mesas);
                 setVisible(false);
             }
@@ -527,11 +530,11 @@ public class VentanaConjuntoMesas extends JFrame {
                             contador++;
                         }
                     }
-                    if (contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
+                    if (valido == true && contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
                         cant = Integer.parseInt(cantidad);
                         mesas.getMesas().get(10).setComensales(cant);
                         mesas.getMesas().get(0).setMesero(mesero);
-                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress);
+                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress,meseros);
                         vista.setMesa(10);
                         vista.init(mesas);
                         mesas.getMesas().get(10).setDisponibilidad(false);
@@ -540,7 +543,7 @@ public class VentanaConjuntoMesas extends JFrame {
                 }
             } else {
                 mesas.getMesas().get(10).setNumero(10);
-                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(10), "Mesa 11", clientes, clientesExpress);
+                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(10), "Mesa 11", clientes, clientesExpress,meseros);
                 vista.init(mesas);
                 setVisible(false);
             }
@@ -570,11 +573,11 @@ public class VentanaConjuntoMesas extends JFrame {
                             contador++;
                         }
                     }
-                    if (contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
+                    if (valido == true && contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
                         cant = Integer.parseInt(cantidad);
                         mesas.getMesas().get(11).setComensales(cant);
                         mesas.getMesas().get(0).setMesero(mesero);
-                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress);
+                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress,meseros);
                         vista.setMesa(11);
                         vista.init(mesas);
                         mesas.getMesas().get(11).setDisponibilidad(false);
@@ -583,7 +586,7 @@ public class VentanaConjuntoMesas extends JFrame {
                 }
             } else {
                 mesas.getMesas().get(11).setNumero(11);
-                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(11), "Mesa 12", clientes, clientesExpress);
+                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(11), "Mesa 12", clientes, clientesExpress,meseros);
                 vista.init(mesas);
                 setVisible(false);
             }
@@ -613,11 +616,11 @@ public class VentanaConjuntoMesas extends JFrame {
                             contador++;
                         }
                     }
-                    if (contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
+                    if (valido == true && contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
                         cant = Integer.parseInt(cantidad);
                         mesas.getMesas().get(12).setComensales(cant);
                         mesas.getMesas().get(0).setMesero(mesero);
-                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress);
+                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress,meseros);
                         vista.setMesa(12);
                         vista.init(mesas);
                         mesas.getMesas().get(12).setDisponibilidad(false);
@@ -626,7 +629,7 @@ public class VentanaConjuntoMesas extends JFrame {
                 }
             } else {
                 mesas.getMesas().get(12).setNumero(12);
-                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(12), "Mesa 1", clientes, clientesExpress);
+                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(12), "Mesa 1", clientes, clientesExpress,meseros);
                 vista.init(mesas);
                 setVisible(false);
             }
@@ -656,11 +659,11 @@ public class VentanaConjuntoMesas extends JFrame {
                             contador++;
                         }
                     }
-                    if (contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
+                    if (valido == true && contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
                         cant = Integer.parseInt(cantidad);
                         mesas.getMesas().get(13).setComensales(cant);
                         mesas.getMesas().get(0).setMesero(mesero);
-                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress);
+                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress,meseros);
                         vista.setMesa(13);
                         vista.init(mesas);
                         mesas.getMesas().get(13).setDisponibilidad(false);
@@ -669,7 +672,7 @@ public class VentanaConjuntoMesas extends JFrame {
                 }
             } else {
                 mesas.getMesas().get(13).setNumero(13);
-                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(13), "Mesa 14", clientes, clientesExpress);
+                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(13), "Mesa 14", clientes, clientesExpress,meseros);
                 vista.init(mesas);
                 setVisible(false);
             }
@@ -699,11 +702,11 @@ public class VentanaConjuntoMesas extends JFrame {
                             contador++;
                         }
                     }
-                    if (contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
+                    if (valido == true && contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
                         cant = Integer.parseInt(cantidad);
                         mesas.getMesas().get(14).setComensales(cant);
                         mesas.getMesas().get(0).setMesero(mesero);
-                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress);
+                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress,meseros);
                         vista.setMesa(14);
                         vista.init(mesas);
                         mesas.getMesas().get(14).setDisponibilidad(false);
@@ -712,7 +715,7 @@ public class VentanaConjuntoMesas extends JFrame {
                 }
             } else {
                 mesas.getMesas().get(14).setNumero(14);
-                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(14), "Mesa 15", clientes, clientesExpress);
+                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(14), "Mesa 15", clientes, clientesExpress,meseros);
                 vista.init(mesas);
                 setVisible(false);
             }
@@ -742,11 +745,11 @@ public class VentanaConjuntoMesas extends JFrame {
                             contador++;
                         }
                     }
-                    if (contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
+                    if (valido == true && contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
                         cant = Integer.parseInt(cantidad);
                         mesas.getMesas().get(15).setComensales(cant);
                         mesas.getMesas().get(0).setMesero(mesero);
-                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress);
+                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress,meseros);
                         vista.setMesa(15);
                         vista.init(mesas);
                         mesas.getMesas().get(15).setDisponibilidad(false);
@@ -755,7 +758,7 @@ public class VentanaConjuntoMesas extends JFrame {
                 }
             } else {
                 mesas.getMesas().get(15).setNumero(15);
-                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(15), "Mesa 16", clientes, clientesExpress);
+                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(15), "Mesa 16", clientes, clientesExpress,meseros);
                 vista.init(mesas);
                 setVisible(false);
             }
@@ -785,11 +788,11 @@ public class VentanaConjuntoMesas extends JFrame {
                             contador++;
                         }
                     }
-                    if (contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
+                    if (valido == true && contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
                         cant = Integer.parseInt(cantidad);
                         mesas.getMesas().get(16).setComensales(cant);
                         mesas.getMesas().get(0).setMesero(mesero);
-                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress);
+                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress,meseros);
                         vista.setMesa(16);
                         vista.init(mesas);
                         mesas.getMesas().get(16).setDisponibilidad(false);
@@ -798,7 +801,7 @@ public class VentanaConjuntoMesas extends JFrame {
                 }
             } else {
                 mesas.getMesas().get(16).setNumero(16);
-                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(16), "Mesa 17", clientes, clientesExpress);
+                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(16), "Mesa 17", clientes, clientesExpress,meseros);
                 vista.init(mesas);
                 setVisible(false);
             }
@@ -828,11 +831,11 @@ public class VentanaConjuntoMesas extends JFrame {
                             contador++;
                         }
                     }
-                    if (contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
+                    if (valido == true && contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
                         cant = Integer.parseInt(cantidad);
                         mesas.getMesas().get(17).setComensales(cant);
                         mesas.getMesas().get(0).setMesero(mesero);
-                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress);
+                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress,meseros);
                         vista.setMesa(17);
                         vista.init(mesas);
                         mesas.getMesas().get(17).setDisponibilidad(false);
@@ -841,7 +844,7 @@ public class VentanaConjuntoMesas extends JFrame {
                 }
             } else {
                 mesas.getMesas().get(17).setNumero(17);
-                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(17), "Mesa 18", clientes, clientesExpress);
+                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(17), "Mesa 18", clientes, clientesExpress,meseros);
                 vista.init(mesas);
                 setVisible(false);
             }
@@ -871,11 +874,11 @@ public class VentanaConjuntoMesas extends JFrame {
                             contador++;
                         }
                     }
-                    if (contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
+                    if (valido == true && contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
                         cant = Integer.parseInt(cantidad);
                         mesas.getMesas().get(18).setComensales(cant);
                         mesas.getMesas().get(0).setMesero(mesero);
-                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress);
+                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress,meseros);
                         vista.setMesa(18);
                         vista.init(mesas);
                         mesas.getMesas().get(18).setDisponibilidad(false);
@@ -884,7 +887,7 @@ public class VentanaConjuntoMesas extends JFrame {
                 }
             } else {
                 mesas.getMesas().get(18).setNumero(18);
-                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(18), "Mesa 19", clientes, clientesExpress);
+                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(18), "Mesa 19", clientes, clientesExpress,meseros);
                 vista.init(mesas);
                 setVisible(false);
             }
@@ -914,11 +917,11 @@ public class VentanaConjuntoMesas extends JFrame {
                             contador++;
                         }
                     }
-                    if (contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
+                    if (valido == true && contador == cantidad.length() && !cantidad.equals("") && (Integer.parseInt(cantidad) > 0) && (Integer.parseInt(cantidad) < 5)) {
                         cant = Integer.parseInt(cantidad);
                         mesas.getMesas().get(19).setComensales(cant);
                         mesas.getMesas().get(0).setMesero(mesero);
-                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress);
+                        VentanaMenu vista = new VentanaMenu(clientes, clientesExpress,meseros);
                         vista.setMesa(19);
                         vista.init(mesas);
                         mesas.getMesas().get(19).setDisponibilidad(false);
@@ -927,14 +930,14 @@ public class VentanaConjuntoMesas extends JFrame {
                 }
             } else {
                 mesas.getMesas().get(19).setNumero(19);
-                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(19), "Mesa 20", clientes, clientesExpress);
+                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(19), "Mesa 20", clientes, clientesExpress,meseros);
                 vista.init(mesas);
                 setVisible(false);
             }
         });
 
         regresar.addActionListener((e) -> {
-            VentanaTipoPedido vista = new VentanaTipoPedido(clientes, clientesExpress);
+            VentanaTipoPedido vista = new VentanaTipoPedido(clientes, clientesExpress,meseros);
             vista.init(mesas);
             setVisible(false);
         });

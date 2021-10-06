@@ -27,14 +27,16 @@ public class VentanaMenuLlevar extends JFrame {
     private ArrayList<Cliente> clientes;
     private ArrayList<Cliente> clientesExpress;
     private ArrayList<Pedido> pedidos;
+    private ArrayList<String> meseros;
     private Platillo platillo_seleccionado;
     private boolean aceptado;
 
-    public VentanaMenuLlevar(ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress) {
+    public VentanaMenuLlevar(ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress, ArrayList<String> meseros) {
         super("Menu de llevar");
         this.clientes = clientes;
         pedidos = new ArrayList();
         this.clientesExpress = clientesExpress;
+        this.meseros=meseros;
         aceptado = false;
     }
 
@@ -166,7 +168,7 @@ public class VentanaMenuLlevar extends JFrame {
             }
             for (int i = 0; i < clientes.size(); i++) {
                 if (clientes.get(i).getNombre().equals(nombre)) {
-                    VentanaPedidoCliente vista = new VentanaPedidoCliente(clientes.get(i).getPedidos(), clientes, clientesExpress);
+                    VentanaPedidoCliente vista = new VentanaPedidoCliente(clientes.get(i).getPedidos(), clientes, clientesExpress,meseros);
                     vista.init(nombre, telefono, "llevar", mesas);
                     setVisible(false);
                 }
@@ -184,7 +186,7 @@ public class VentanaMenuLlevar extends JFrame {
         });
 
         regresar.addActionListener((e) -> {
-            VentanaLlevar ventana = new VentanaLlevar(clientes, clientesExpress);
+            VentanaLlevar ventana = new VentanaLlevar(clientes, clientesExpress,meseros);
             ventana.init(mesas);
             setVisible(false);
         });

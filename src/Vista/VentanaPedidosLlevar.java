@@ -23,12 +23,14 @@ public class VentanaPedidosLlevar extends JFrame {
 
     private ArrayList<Cliente> clientes;
     private ArrayList<Cliente> clientesExpress;
+    private ArrayList<String> meseros;
     private JButton regresar, mostrarCliente;
 
-    public VentanaPedidosLlevar(ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress) {
+    public VentanaPedidosLlevar(ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress, ArrayList<String> meseros) {
         super("Pedidos para llevar");
         this.clientes = clientes;
         this.clientesExpress = clientesExpress;
+        this.meseros=meseros;
     }
 
     public void init(ConjuntoMesas mesas) {
@@ -52,7 +54,7 @@ public class VentanaPedidosLlevar extends JFrame {
 
         regresar = new JButton("Regresar");
         regresar.addActionListener((e) -> {
-            VentanaLlevar ventana = new VentanaLlevar(clientes, clientesExpress);
+            VentanaLlevar ventana = new VentanaLlevar(clientes, clientesExpress,meseros);
             ventana.init(mesas);
             setVisible(false);
         });
@@ -68,7 +70,7 @@ public class VentanaPedidosLlevar extends JFrame {
                 int fila = tabla.getSelectedRow();
                 if (fila != -1) {
                     Factura factura = new Factura(clientes.get(fila).getNombre(), "Llevar", "Ventanilla", fila, fecha, clientes.get(fila).getPedidos());
-                    VentanaFacturaLlevar vista = new VentanaFacturaLlevar(factura, clientes, clientesExpress);
+                    VentanaFacturaLlevar vista = new VentanaFacturaLlevar(factura, clientes, clientesExpress,meseros);
                     vista.init(mesas);
                     setVisible(false);
                 }

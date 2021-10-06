@@ -22,16 +22,18 @@ public class VentanaPedidos extends JFrame {
     private final ArrayList<Pedido> pedidos;
     private final ArrayList<Cliente> clientes;
     private final ArrayList<Cliente> clientesExpress;
+    private ArrayList<String> meseros;
     private final int numero_mesa;
     private final JButton regresar;
 
-    public VentanaPedidos(ArrayList<Pedido> pedidos, int numero_mesa, ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress) {
+    public VentanaPedidos(ArrayList<Pedido> pedidos, int numero_mesa, ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress, ArrayList<String> meseros) {
         super("Pedidos Mesa " + (numero_mesa + 1));
         this.pedidos = pedidos;
         this.numero_mesa = numero_mesa;
         regresar = new JButton("Regresar");
         this.clientes = clientes;
         this.clientesExpress = clientesExpress;
+        this.meseros=meseros;
     }
 
     public void init(ConjuntoMesas mesas, String ventana) {
@@ -74,12 +76,12 @@ public class VentanaPedidos extends JFrame {
 
         regresar.addActionListener((e) -> {
             if (ventana.equals("Menu")) {
-                VentanaMenu vista = new VentanaMenu(clientes, clientesExpress);
+                VentanaMenu vista = new VentanaMenu(clientes, clientesExpress,meseros);
                 vista.setPedidos(pedidos);
                 vista.setMesa(numero_mesa);
                 vista.init(mesas);
             } else if (ventana.equals("Mesa")) {
-                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(numero_mesa), "Mesa " + (numero_mesa + 1), clientes, clientesExpress);
+                VentanaMesa vista = new VentanaMesa(mesas.getMesas().get(numero_mesa), "Mesa " + (numero_mesa + 1), clientes, clientesExpress,meseros);
                 vista.init(mesas);
             }
             setVisible(false);

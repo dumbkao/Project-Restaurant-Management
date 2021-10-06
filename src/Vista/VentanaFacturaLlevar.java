@@ -28,13 +28,15 @@ public class VentanaFacturaLlevar extends JFrame {
     private ArrayList<Cliente> clientes;
     private ArrayList<Cliente> clientesExpress;
     private ArrayList<Pedido> pedidos;
+    private ArrayList<String> meseros;
     private final Factura factura;
 
-    public VentanaFacturaLlevar(Factura factura, ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress) {
+    public VentanaFacturaLlevar(Factura factura, ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress,ArrayList<String> meseros) {
         super("Factura para llevar ");
         this.factura = factura;
         this.clientes = clientes;
         this.clientesExpress = clientesExpress;
+        this.meseros=meseros;
     }
 
     public void init(ConjuntoMesas mesas) {
@@ -103,7 +105,7 @@ public class VentanaFacturaLlevar extends JFrame {
         imagen.setIcon(imagen_icono);
 
         regresar.addActionListener((e) -> {
-            VentanaPedidosLlevar vista = new VentanaPedidosLlevar(clientes, clientesExpress);
+            VentanaPedidosLlevar vista = new VentanaPedidosLlevar(clientes, clientesExpress,meseros);
             vista.init(mesas);
             setVisible(false);
         });

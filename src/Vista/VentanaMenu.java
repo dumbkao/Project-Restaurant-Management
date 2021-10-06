@@ -27,13 +27,15 @@ public class VentanaMenu extends JFrame {
     private Platillo platillo_seleccionado;
     private ArrayList<Cliente> clientes;
     private ArrayList<Cliente> clientesExpress;
+    private ArrayList<String> meseros;
 
-    public VentanaMenu(ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress) {
+    public VentanaMenu(ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress, ArrayList<String> meseros) {
         super("Menu");
         this.numero_mesa = -1;
         pedidos = new ArrayList();
         this.clientes = clientes;
         this.clientesExpress = clientesExpress;
+        this.meseros=meseros;
     }
 
     public void init(ConjuntoMesas mesas) {
@@ -151,7 +153,7 @@ public class VentanaMenu extends JFrame {
         });
 
         btn_ver_pedidos.addActionListener((e) -> {
-            VentanaPedidos vista = new VentanaPedidos(pedidos, numero_mesa, clientes, clientesExpress);
+            VentanaPedidos vista = new VentanaPedidos(pedidos, numero_mesa, clientes, clientesExpress,meseros);
             vista.init(mesas, "Menu");
             setVisible(false);
         });
@@ -165,7 +167,7 @@ public class VentanaMenu extends JFrame {
         });
 
         regresar.addActionListener((e) -> {
-            VentanaConjuntoMesas vista = new VentanaConjuntoMesas(mesas, clientes, clientesExpress);
+            VentanaConjuntoMesas vista = new VentanaConjuntoMesas(mesas, clientes, clientesExpress,meseros);
             vista.init();
             setVisible(false);
         });

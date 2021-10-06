@@ -21,13 +21,15 @@ public class VentanaPedidoExpress extends JFrame {
     private final ArrayList<Cliente> clientes;
     private final ArrayList<Cliente> clientesExpress;
     private final ArrayList<Pedido> pedidos;
+    private ArrayList<String> meseros;
     private final JButton regresar;
 
-    public VentanaPedidoExpress(ArrayList<Pedido> pedidos, ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress) {
+    public VentanaPedidoExpress(ArrayList<Pedido> pedidos, ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress,ArrayList<String> meseros) {
         super("Pedidos Express");
         this.pedidos = pedidos;
         this.clientes = clientes;
         this.clientesExpress = clientesExpress;
+        this.meseros=meseros;
         regresar = new JButton("Regresar");
     }
 
@@ -71,7 +73,7 @@ public class VentanaPedidoExpress extends JFrame {
         panel_boton.add(regresar);
 
         regresar.addActionListener((e) -> {
-            VentanaMenuExpress vista = new VentanaMenuExpress(clientes, clientesExpress);
+            VentanaMenuExpress vista = new VentanaMenuExpress(clientes, clientesExpress,meseros);
             vista.setPedidos(pedidos);
             vista.iniciar(nombre, telefono, telefono, mesas);
             setVisible(false);

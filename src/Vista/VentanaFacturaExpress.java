@@ -27,14 +27,16 @@ public class VentanaFacturaExpress extends JFrame {
     private ArrayList<Cliente> clientes;
     private ArrayList<Cliente> clientesExpress;
     private ArrayList<Pedido> pedidos;
+    private ArrayList<String> meseros;
     private final Factura factura;
     private JButton btnRegresar;
 
-    public VentanaFacturaExpress(Factura factura, ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress) {
+    public VentanaFacturaExpress(Factura factura, ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress,ArrayList<String> meseros) {
         super("Factura Express ");
         this.factura = factura;
         this.clientes = clientes;
         this.clientesExpress = clientesExpress;
+        this.meseros=meseros;
     }
 
     public void iniciar(ConjuntoMesas mesas) {
@@ -103,7 +105,7 @@ public class VentanaFacturaExpress extends JFrame {
         imagen.setIcon(imagen_icono);
 
         regresar.addActionListener((e) -> {
-            VentanaPedidosExpress vista = new VentanaPedidosExpress(clientes, clientesExpress);
+            VentanaPedidosExpress vista = new VentanaPedidosExpress(clientes, clientesExpress,meseros);
             vista.iniciar(mesas);
             setVisible(false);
         });
