@@ -31,7 +31,7 @@ public class VentanaFactura extends JFrame {
     private final int numero_mesa;
 
     public VentanaFactura(Factura factura, int numero_mesa, ArrayList<Cliente> clientes, ArrayList<Cliente> clientesExpress,ArrayList<String> meseros) {
-        super("Factura Mesa " + numero_mesa);
+        super("Factura Mesa " + (numero_mesa+1));
         this.factura = factura;
         this.numero_mesa = numero_mesa;
         this.clientes = clientes;
